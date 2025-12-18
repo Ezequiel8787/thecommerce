@@ -163,6 +163,13 @@ button, a {
     z-index: 9999;
 }
 
+@media (max-width: 768px) {
+    .chatbot-container {
+        bottom: 16px;
+        right: 16px;
+    }
+}
+
 .chatbot-button {
     width: 64px;
     height: 64px;

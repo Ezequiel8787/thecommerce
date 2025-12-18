@@ -1,4 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.md\\:hidden');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuBtn && !mobileMenu) {
+        // Create mobile menu if it doesn't exist
+        const nav = document.querySelector('nav');
+        const menuHTML = `
+            <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200 py-4 px-6">
+                <a href="index.html" class="block py-3 text-slate-700 hover:text-blue-600 transition">Inicio</a>
+                <a href="nosotros.html" class="block py-3 text-slate-700 hover:text-blue-600 transition">Nosotros</a>
+                <a href="servicios.html" class="block py-3 text-slate-700 hover:text-blue-600 transition">Servicios</a>
+                <a href="direcciones.html" class="block py-3 text-slate-700 hover:text-blue-600 transition">Direcciones</a>
+                <a href="cotizaciones.html" class="block py-3 px-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg text-center mt-2">Cotizar</a>
+            </div>
+        `;
+        nav.insertAdjacentHTML('beforeend', menuHTML);
+    }
+    
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            }
+        });
+    }
+    
     const counters = document.querySelectorAll('.counter');
     let hasAnimated = false;
 

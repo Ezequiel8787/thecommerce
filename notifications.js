@@ -10,7 +10,7 @@ class ToastNotification {
         if (!document.getElementById('toast-container')) {
             this.container = document.createElement('div');
             this.container.id = 'toast-container';
-            this.container.className = 'fixed top-4 right-4 z-[10000] space-y-3';
+            this.container.className = 'fixed top-4 right-4 z-[10000] space-y-3 max-w-[calc(100vw-2rem)] md:max-w-md';
             document.body.appendChild(this.container);
         } else {
             this.container = document.getElementById('toast-container');

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios | THM Commerce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900 font-['Inter']">
+
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">T</span>
+                </div>
+                <h1 class="text-2xl font-bold text-[#0f172a]">THM <span class="text-blue-600">Commerce</span></h1>
+            </a>
+            <div class="hidden md:flex items-center space-x-1">
+                <a href="index.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition">Inicio</a>
+                <a href="nosotros.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition">Nosotros</a>
+                <a href="servicios.html" class="px-4 py-2 text-blue-600 bg-blue-50 rounded-lg transition">Servicios</a>
+                <a href="direcciones.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition">Direcciones</a>
+                <a href="cotizaciones.html" class="ml-2 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:shadow-lg hover:scale-105 transition-all">Cotizar</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20 px-4 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+        <div class="max-w-7xl mx-auto text-center">
+            <span class="text-blue-400 font-semibold text-sm uppercase tracking-wider">Nuestros Servicios</span>
+            <h1 class="text-5xl md:text-6xl font-black text-white mt-4 mb-6">Soluciones Completas de Logística</h1>
+            <p class="text-xl text-slate-300 max-w-3xl mx-auto">Desde la verificación en origen hasta la entrega en tu puerta, te acompañamos en cada paso del proceso de importación.</p>
+        </div>
+    </section>
+    
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Servicios Adicionales</h2>
+                <p class="text-slate-600">Soluciones especializadas para cada necesidad de importación</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&q=80" alt="Carga pesada" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 class="text-lg font-bold mb-2">Carga Pesada</h3>
+                        <a href="cotizaciones.html?servicio=Carga%20Pesada" class="inline-flex items-center text-sm font-semibold hover:text-blue-300 transition">
+                            Cotizar →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=600&q=80" alt="Importación consolidada" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 class="text-lg font-bold mb-2">Importación Consolidada</h3>
+                        <a href="cotizaciones.html?servicio=Importación%20Consolidada" class="inline-flex items-center text-sm font-semibold hover:text-blue-300 transition">
+                            Cotizar →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=600&q=80" alt="Envíos Aéreos" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 class="text-lg font-bold mb-2">Envíos Aéreos</h3>
+                        <a href="cotizaciones.html?servicio=Envío%20Aéreo" class="inline-flex items-center text-sm font-semibold hover:text-blue-300 transition">
+                            Cotizar →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=600&q=80" alt="Verificación de fábrica" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 class="text-lg font-bold mb-2">Verificación de Fábrica</h3>
+                        <a href="cotizaciones.html?servicio=Verificación%20en%20China" class="inline-flex items-center text-sm font-semibold hover:text-blue-300 transition">
+                            Cotizar →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&q=80" alt="Envíos Marítimos" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 class="text-lg font-bold mb-2">Envíos Marítimos</h3>
+                        <a href="cotizaciones.html?servicio=Envío%20Marítimo" class="inline-flex items-center text-sm font-semibold hover:text-blue-300 transition">
+                            Cotizar →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&q=80" alt="Envíos Aéreos" class="w-full h-96 object-cover">
+                </div>
+                <div>
+                    <div class="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">✈️ Envíos Aéreos</div>
+                    <h2 class="text-4xl font-bold text-slate-900 mb-6">Transporte Aéreo Express</h2>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Ideal para mercancías urgentes o de alto valor. Nuestro servicio de carga aérea garantiza tiempos de tránsito reducidos con la máxima seguridad.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <strong class="text-slate-900">Tiempos de tránsito: 5-7 días</strong>
+                                <p class="text-slate-600 text-sm">Desde China o USA hasta México</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <strong class="text-slate-900">Seguimiento en tiempo real</strong>
+                                <p class="text-slate-600 text-sm">Monitoreo 24/7 de tu carga</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <strong class="text-slate-900">Gestión aduanal incluida</strong>
+                                <p class="text-slate-600 text-sm">Nos encargamos de toda la documentación</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="order-2 md:order-1">
+                    <div class="inline-block px-4 py-2 bg-cyan-100 text-cyan-700 rounded-full text-sm font-semibold mb-4">🚢 Envíos Marítimos</div>
+                    <h2 class="text-4xl font-bold text-slate-900 mb-6">Carga Marítima Consolidada</h2>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Solución económica para grandes volúmenes. Ofrecemos servicios LCL (carga suelta) y FCL (contenedor completo) con las mejores tarifas del mercado.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-cyan-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <strong class="text-slate-900">LCL - Carga Suelta</strong>
+                                <p class="text-slate-600 text-sm">Ideal para volúmenes pequeños, pagas solo por el espacio que usas</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-cyan-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <strong class="text-slate-900">FCL - Contenedor Completo</strong>
+                                <p class="text-slate-600 text-sm">20' o 40' para grandes volúmenes con mejor precio</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-cyan-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <strong class="text-slate-900">Tiempos de tránsito: 25-35 días</strong>
+                                <p class="text-slate-600 text-sm">Desde puertos asiáticos hasta México</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl order-1 md:order-2">
+                    <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&q=80" alt="Envíos Marítimos" class="w-full h-96 object-cover">
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80" alt="Verificación" class="w-full h-96 object-cover">
+                </div>
+                <div>
+                    <div class="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold mb-4">🔍 Verificación en China</div>
+                    <h2 class="text-4xl font-bold text-slate-900 mb-6">Inspección y Control de Calidad</h2>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Nuestro equipo en Shenzhen verifica la calidad de tus productos antes del embarque, asegurando que recibas exactamente lo que ordenaste.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-purple-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <strong class="text-slate-900">Auditoría de fábricas</strong>
+                                <p class="text-slate-600 text-sm">Verificamos certificaciones y capacidad de producción</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-purple-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <strong class="text-slate-900">Inspección pre-embarque</strong>
+                                <p class="text-slate-600 text-sm">Revisión de calidad, cantidad y embalaje</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-purple-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <strong class="text-slate-900">Reportes fotográficos</strong>
+                                <p class="text-slate-600 text-sm">Documentación completa del estado de tu mercancía</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <div class="inline-block px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-semibold mb-4">💼 Comercializadora</div>
+                    <h2 class="text-4xl font-bold text-slate-900 mb-6">Facturación Nacional</h2>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Compramos tu mercancía en el extranjero y te la facturamos en México. Ideal para empresas que requieren facturas nacionales para deducibilidad fiscal.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-emerald-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <strong class="text-slate-900">Factura CFDI 4.0</strong>
+                                <p class="text-slate-600 text-sm">100% deducible de impuestos en México</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-emerald-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <strong class="text-slate-900">Pago directo a proveedores</strong>
+                                <p class="text-slate-600 text-sm">Nos encargamos de las transferencias internacionales</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-emerald-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <strong class="text-slate-900">Gestión de importación incluida</strong>
+                                <p class="text-slate-600 text-sm">Servicio integral desde origen hasta destino</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl order-1 md:order-2">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" alt="Comercializadora" class="w-full h-96 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Preguntas Frecuentes</h2>
+                <p class="text-slate-600">Respuestas a las dudas más comunes sobre nuestros servicios</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all">
+                    <h3 class="font-bold text-slate-900 mb-3 flex items-center">
+                        <span class="text-2xl mr-3">❓</span>
+                        ¿Cuánto tiempo tarda un envío desde China?
+                    </h3>
+                    <p class="text-slate-600 text-sm">Vía aérea: 5-7 días. Vía marítima: 25-35 días. Incluye gestión aduanal y entrega en tu almacén.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all">
+                    <h3 class="font-bold text-slate-900 mb-3 flex items-center">
+                        <span class="text-2xl mr-3">❓</span>
+                        ¿Qué incluye el servicio de verificación?
+                    </h3>
+                    <p class="text-slate-600 text-sm">Inspección de fábrica, revisión de calidad, certificaciones, fotos y reportes detallados antes del embarque.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all">
+                    <h3 class="font-bold text-slate-900 mb-3 flex items-center">
+                        <span class="text-2xl mr-3">❓</span>
+                        ¿Cómo funciona la comercializadora?
+                    </h3>
+                    <p class="text-slate-600 text-sm">Compramos tu mercancía en el extranjero y te facturamos en México con CFDI 4.0, 100% deducible de impuestos.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all">
+                    <h3 class="font-bold text-slate-900 mb-3 flex items-center">
+                        <span class="text-2xl mr-3">❓</span>
+                        ¿Cuál es el mínimo de envío?
+                    </h3>
+                    <p class="text-slate-600 text-sm">No hay mínimo. Manejamos desde 1kg hasta contenedores completos. Cotizamos según tus necesidades.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Garantías y Certificaciones</h2>
+            </div>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="text-center p-6 bg-slate-50 rounded-xl hover:bg-blue-50 transition-all">
+                    <div class="text-5xl mb-4">🛡️</div>
+                    <h3 class="font-bold text-slate-900 mb-2">Seguro de Carga</h3>
+                    <p class="text-sm text-slate-600">Cobertura total incluida</p>
+                </div>
+                <div class="text-center p-6 bg-slate-50 rounded-xl hover:bg-blue-50 transition-all">
+                    <div class="text-5xl mb-4">✅</div>
+                    <h3 class="font-bold text-slate-900 mb-2">ISO 9001</h3>
+                    <p class="text-sm text-slate-600">Procesos certificados</p>
+                </div>
+                <div class="text-center p-6 bg-slate-50 rounded-xl hover:bg-blue-50 transition-all">
+                    <div class="text-5xl mb-4">📊</div>
+                    <h3 class="font-bold text-slate-900 mb-2">Tracking 24/7</h3>
+                    <p class="text-sm text-slate-600">Monitoreo en tiempo real</p>
+                </div>
+                <div class="text-center p-6 bg-slate-50 rounded-xl hover:bg-blue-50 transition-all">
+                    <div class="text-5xl mb-4">📞</div>
+                    <h3 class="font-bold text-slate-900 mb-2">Soporte 24/7</h3>
+                    <p class="text-sm text-slate-600">Atención inmediata</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent_50%)]"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6">
+                <span class="text-sm font-semibold">🎉 Cotización Gratis</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">¿Listo para Importar?</h2>
+            <p class="text-xl text-blue-100 mb-8">Solicita una cotización sin compromiso y descubre cómo podemos ayudarte a crecer tu negocio.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="cotizaciones.html" class="inline-block px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-2xl hover:scale-105 transition-transform">Solicitar Cotización Gratis</a>
+                <a href="direcciones.html" class="inline-block px-8 py-4 bg-blue-500 text-white font-bold rounded-xl border-2 border-white/30 hover:bg-blue-400 transition-all">Ver Oficinas</a>
+            </div>
+            <p class="text-sm text-blue-200 mt-6">✨ Respuesta en menos de 24 horas • Sin compromiso • Asesoría gratuita</p>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-300">
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold">T</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">THM Commerce</h3>
+                    </div>
+                    <p class="text-sm text-slate-400">Expertos en logística internacional y comercio exterior.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Servicios</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="servicios.html" class="hover:text-blue-400 transition">Envíos Aéreos</a></li>
+                        <li><a href="servicios.html" class="hover:text-blue-400 transition">Envíos Marítimos</a></li>
+                        <li><a href="servicios.html" class="hover:text-blue-400 transition">Verificación en China</a></li>
+                        <li><a href="servicios.html" class="hover:text-blue-400 transition">Comercializadora</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Empresa</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-blue-400 transition">Inicio</a></li>
+                        <li><a href="direcciones.html" class="hover:text-blue-400 transition">Direcciones</a></li>
+                        <li><a href="cotizaciones.html" class="hover:text-blue-400 transition">Cotizaciones</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Contacto</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>📧 thmlogisticsimports@gmail.com</li>
+                        <li>📞 (614) 219-0607</li>
+                        <li>📞 (614) 152-6240</li>
+                        <li>📍 Chihuahua, El Paso, Shenzhen</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 text-center text-sm text-slate-500">
+                <p>&copy; 2025 THM Commerce. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="notifications.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+</html>

@@ -43,7 +43,7 @@
                 <p class="text-slate-600">Soluciones especializadas para cada necesidad de importación</p>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4" data-servicios-adicionales>
                 <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500">
                     <div class="aspect-[3/4] overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&q=80" alt="Carga pesada" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -393,10 +393,10 @@
                 <div>
                     <h4 class="font-bold text-white mb-4">Contacto</h4>
                     <ul class="space-y-2 text-sm">
-                        <li>📧 thmlogisticsimports@gmail.com</li>
-                        <li>📞 (614) 219-0607</li>
-                        <li>📞 (614) 152-6240</li>
-                        <li>📍 Chihuahua, El Paso, Shenzhen</li>
+                        <li data-contact="email">📧 thmlogisticsimports@gmail.com</li>
+                        <li data-contact="telefono1">📞 (614) 219-0607</li>
+                        <li data-contact="telefono2">📞 (614) 152-6240</li>
+                        <li data-contact="ubicaciones">📍 Chihuahua, El Paso, Shenzhen</li>
                     </ul>
                 </div>
             </div>
@@ -406,7 +406,8 @@
         </div>
     </footer>
 
+    <script src="content-loader.js"></script>
     <script src="notifications.js"></script>
-    <script src="chatbot.js"></script>
+    <script src="visual-editor.js"></script>
 </body>
 </html>

@@ -42,13 +42,13 @@
                 <div>
                     <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Nuestra Historia</span>
                     <h2 class="text-4xl font-bold text-slate-900 mt-3 mb-6">Una Trayectoria de Éxito</h2>
-                    <p class="text-slate-600 mb-4 leading-relaxed">
+                    <p class="text-slate-600 mb-4 leading-relaxed" data-nosotros="p1">
                         THM Commerce nació en 2008 con una visión clara: simplificar el proceso de importación para empresas mexicanas que buscan expandir sus horizontes comerciales. Lo que comenzó como una pequeña operación en Chihuahua, se ha convertido en una red logística internacional con presencia en tres continentes.
                     </p>
-                    <p class="text-slate-600 mb-4 leading-relaxed">
+                    <p class="text-slate-600 mb-4 leading-relaxed" data-nosotros="p2">
                         A lo largo de los años, hemos ayudado a más de 500 empresas a importar productos de calidad desde China y Estados Unidos, garantizando siempre transparencia, seguridad y eficiencia en cada operación.
                     </p>
-                    <p class="text-slate-600 leading-relaxed">
+                    <p class="text-slate-600 leading-relaxed" data-nosotros="p3">
                         Hoy, somos reconocidos como uno de los principales facilitadores de comercio internacional en el norte de México, con un equipo especializado y oficinas estratégicamente ubicadas para servir mejor a nuestros clientes.
                     </p>
                 </div>
@@ -122,7 +122,7 @@
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold text-slate-900 mb-4">Misión</h3>
-                    <p class="text-slate-600 leading-relaxed">
+                    <p class="text-slate-600 leading-relaxed" data-nosotros="mision">
                         Facilitar el comercio internacional para empresas mexicanas, brindando soluciones logísticas integrales que garanticen seguridad, eficiencia y transparencia en cada operación, permitiendo a nuestros clientes enfocarse en el crecimiento de sus negocios.
                     </p>
                 </div>
@@ -135,7 +135,7 @@
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold text-slate-900 mb-4">Visión</h3>
-                    <p class="text-slate-600 leading-relaxed">
+                    <p class="text-slate-600 leading-relaxed" data-nosotros="vision">
                         Ser la empresa líder en logística internacional en México, reconocida por nuestra innovación, confiabilidad y compromiso con el éxito de nuestros clientes, expandiendo nuestra red global y estableciendo nuevos estándares de excelencia en el sector.
                     </p>
                 </div>
@@ -235,10 +235,10 @@
                 <div>
                     <h4 class="font-bold text-white mb-4">Contacto</h4>
                     <ul class="space-y-2 text-sm">
-                        <li>📧 thmlogisticsimports@gmail.com</li>
-                        <li>📞 (614) 219-0607</li>
-                        <li>📞 (614) 152-6240</li>
-                        <li>📍 Chihuahua, El Paso, Shenzhen</li>
+                        <li data-contact="email">📧 thmlogisticsimports@gmail.com</li>
+                        <li data-contact="telefono1">📞 (614) 219-0607</li>
+                        <li data-contact="telefono2">📞 (614) 152-6240</li>
+                        <li data-contact="ubicaciones">📍 Chihuahua, El Paso, Shenzhen</li>
                     </ul>
                 </div>
             </div>
@@ -248,8 +248,9 @@
         </div>
     </footer>
 
+    <script src="content-loader.js"></script>
     <script src="notifications.js"></script>
-    <script src="chatbot.js"></script>
+    <script src="visual-editor.js"></script>
 
 </body>
 </html>

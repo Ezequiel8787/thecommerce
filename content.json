@@ -1,0 +1,213 @@
+{
+  "sitio": {
+    "nombre": "THM Commerce",
+    "email": "thmlogisticsimports@gmail.com",
+    "telefono1": "(614) 219-0607",
+    "telefono2": "(614) 152-6240",
+    "ubicaciones": "Chihuahua, El Paso, Shenzhen"
+  },
+  "hero": {
+    "badge": "🌍 Operando en 3 Continentes",
+    "titulo": "Conectamos tu Negocio con el",
+    "tituloDestacado": "Mundo",
+    "subtitulo": "Importaciones seguras desde China y USA. Verificación de calidad, gestión aduanal y entrega directa en México.",
+    "imagenFondo": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80",
+    "estadisticas": {
+      "experiencia": "15+",
+      "experienciaTexto": "Años de Experiencia",
+      "clientes": "500+",
+      "clientesTexto": "Clientes Satisfechos",
+      "oficinas": "3",
+      "oficinasTexto": "Oficinas Globales"
+    }
+  },
+  "servicios": [
+    {
+      "id": "carga-pesada",
+      "nombre": "Carga Pesada",
+      "imagen": "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&q=80"
+    },
+    {
+      "id": "importacion-consolidada",
+      "nombre": "Importación Consolidada",
+      "imagen": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=600&q=80"
+    },
+    {
+      "id": "envios-aereos",
+      "nombre": "Envíos Aéreos",
+      "imagen": "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=600&q=80"
+    },
+    {
+      "id": "verificacion-china",
+      "nombre": "Verificación en China",
+      "imagen": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=600&q=80"
+    },
+    {
+      "id": "envios-maritimos",
+      "nombre": "Envíos Marítimos",
+      "imagen": "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&q=80"
+    }
+  ],
+  "certificaciones": [
+    {
+      "icono": "🏆",
+      "titulo": "ISO 9001:2015",
+      "descripcion": "Certificación de Calidad"
+    },
+    {
+      "icono": "🛡️",
+      "titulo": "C-TPAT",
+      "descripcion": "Seguridad Aduanal"
+    },
+    {
+      "icono": "✅",
+      "titulo": "OEA Certificado",
+      "descripcion": "Operador Económico Autorizado"
+    },
+    {
+      "icono": "⭐",
+      "titulo": "4.9/5.0",
+      "descripcion": "Calificación Clientes"
+    }
+  ],
+  "casosExito": [
+    {
+      "iniciales": "IN",
+      "empresa": "Industrias del Norte",
+      "descripcion": "Importación de maquinaria industrial desde China. Reducción de costos del 35% vs su proveedor anterior.",
+      "badge": "-35% Costos",
+      "ahorro": "$127,000 USD",
+      "envios": "24 contenedores",
+      "color": "blue"
+    },
+    {
+      "iniciales": "TM",
+      "empresa": "Textiles México",
+      "descripcion": "Verificación de calidad en fábrica evitó pérdidas por productos defectuosos. Cero rechazos en 18 meses.",
+      "badge": "0% Defectos",
+      "ahorro": "$89,000 USD",
+      "envios": "47 verificaciones",
+      "color": "cyan"
+    },
+    {
+      "iniciales": "ER",
+      "empresa": "Electrónicos RS",
+      "descripcion": "Servicio de comercializadora permitió facturación nacional y deducibilidad fiscal completa.",
+      "badge": "100% Deducible",
+      "ahorro": "$156,000 USD",
+      "envios": "3 años",
+      "color": "purple"
+    }
+  ],
+  "testimonios": [
+    {
+      "iniciales": "JM",
+      "nombre": "Juan Martínez",
+      "puesto": "Director de Compras, Industrias del Norte",
+      "testimonio": "Excelente servicio. Nos ayudaron a importar maquinaria desde China con total transparencia. Ahorramos 35% vs otros proveedores.",
+      "color": "blue"
+    },
+    {
+      "iniciales": "LG",
+      "nombre": "Laura Gómez",
+      "puesto": "Gerente General, Textiles México",
+      "testimonio": "La verificación en fábrica fue clave. Detectaron problemas de calidad antes del envío. Muy profesionales.",
+      "color": "cyan"
+    },
+    {
+      "iniciales": "RS",
+      "nombre": "Roberto Sánchez",
+      "puesto": "Dueño, Electrónicos RS",
+      "testimonio": "Llevo 3 años trabajando con THM. Siempre cumplen tiempos y la facturación nacional es perfecta para mi contabilidad.",
+      "color": "purple"
+    }
+  ],
+  "nosotros": {
+    "historia": {
+      "parrafo1": "THM Commerce nació en 2008 con una visión clara: simplificar el proceso de importación para empresas mexicanas que buscan expandir sus horizontes comerciales. Lo que comenzó como una pequeña operación en Chihuahua, se ha convertido en una red logística internacional con presencia en tres continentes.",
+      "parrafo2": "A lo largo de los años, hemos ayudado a más de 500 empresas a importar productos de calidad desde China y Estados Unidos, garantizando siempre transparencia, seguridad y eficiencia en cada operación.",
+      "parrafo3": "Hoy, somos reconocidos como uno de los principales facilitadores de comercio internacional en el norte de México, con un equipo especializado y oficinas estratégicamente ubicadas para servir mejor a nuestros clientes.",
+      "imagen": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80"
+    },
+    "mision": "Facilitar el comercio internacional para empresas mexicanas, brindando soluciones logísticas integrales que garanticen seguridad, eficiencia y transparencia en cada operación, permitiendo a nuestros clientes enfocarse en el crecimiento de sus negocios.",
+    "vision": "Ser la empresa líder en logística internacional en México, reconocida por nuestra innovación, confiabilidad y compromiso con el éxito de nuestros clientes, expandiendo nuestra red global y estableciendo nuevos estándares de excelencia en el sector."
+  },
+  "serviciosDetallados": {
+    "aereo": {
+      "titulo": "Transporte Aéreo Express",
+      "descripcion": "Ideal para mercancías urgentes o de alto valor. Nuestro servicio de carga aérea garantiza tiempos de tránsito reducidos con la máxima seguridad.",
+      "imagen": "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&q=80",
+      "caracteristicas": [
+        {
+          "titulo": "Tiempos de tránsito: 5-7 días",
+          "descripcion": "Desde China o USA hasta México"
+        },
+        {
+          "titulo": "Seguimiento en tiempo real",
+          "descripcion": "Monitoreo 24/7 de tu carga"
+        },
+        {
+          "titulo": "Gestión aduanal incluida",
+          "descripcion": "Nos encargamos de toda la documentación"
+        }
+      ]
+    },
+    "maritimo": {
+      "titulo": "Carga Marítima Consolidada",
+      "descripcion": "Solución económica para grandes volúmenes. Ofrecemos servicios LCL (carga suelta) y FCL (contenedor completo) con las mejores tarifas del mercado.",
+      "imagen": "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&q=80",
+      "caracteristicas": [
+        {
+          "titulo": "LCL - Carga Suelta",
+          "descripcion": "Ideal para volúmenes pequeños, pagas solo por el espacio que usas"
+        },
+        {
+          "titulo": "FCL - Contenedor Completo",
+          "descripcion": "20' o 40' para grandes volúmenes con mejor precio"
+        },
+        {
+          "titulo": "Tiempos de tránsito: 25-35 días",
+          "descripcion": "Desde puertos asiáticos hasta México"
+        }
+      ]
+    },
+    "verificacion": {
+      "titulo": "Inspección y Control de Calidad",
+      "descripcion": "Nuestro equipo en Shenzhen verifica la calidad de tus productos antes del embarque, asegurando que recibas exactamente lo que ordenaste.",
+      "imagen": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80",
+      "caracteristicas": [
+        {
+          "titulo": "Auditoría de fábricas",
+          "descripcion": "Verificamos certificaciones y capacidad de producción"
+        },
+        {
+          "titulo": "Inspección pre-embarque",
+          "descripcion": "Revisión de calidad, cantidad y embalaje"
+        },
+        {
+          "titulo": "Reportes fotográficos",
+          "descripcion": "Documentación completa del estado de tu mercancía"
+        }
+      ]
+    },
+    "comercializadora": {
+      "titulo": "Facturación Nacional",
+      "descripcion": "Compramos tu mercancía en el extranjero y te la facturamos en México. Ideal para empresas que requieren facturas nacionales para deducibilidad fiscal.",
+      "imagen": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+      "caracteristicas": [
+        {
+          "titulo": "Factura CFDI 4.0",
+          "descripcion": "100% deducible de impuestos en México"
+        },
+        {
+          "titulo": "Pago directo a proveedores",
+          "descripcion": "Nos encargamos de las transferencias internacionales"
+        },
+        {
+          "titulo": "Gestión de importación incluida",
+          "descripcion": "Servicio integral desde origen hasta destino"
+        }
+      ]
+    }
+  }
+}

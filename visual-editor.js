@@ -4,8 +4,17 @@ class VisualEditor {
         this.selectedElement = null;
         this.originalContent = {};
         this.changes = {};
+        this.clientNotes = '';
+        this.notesStorageKey = '';
+        this.toolbarCollapsed = false;
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
         this.pageId = currentPage.replace('.html', '_html');
+        this.notesStorageKey = `visualEditorNotes_${this.pageId}`;
+        try {
+            this.clientNotes = localStorage.getItem(this.notesStorageKey) || '';
+        } catch (e) {
+            console.log('ℹ️ Notas locales no disponibles:', e.message);
+        }
         this.editorPassword = 'thm2024'; // Contraseña para acceder al editor
         this.isAuthenticated = false;
         
@@ -35,6 +44,10 @@ class VisualEditor {
             if (response.ok) {
                 const allChanges = await response.json();
                 this.changes = allChanges[this.pageId] || {};
+                if (allChanges.meta?.notes) {
+                    this.clientNotes = allChanges.meta.notes;
+                    this.persistNotesLocally();
+                }
                 console.log('� Cambios cargados:', Object.keys(this.changes).length, 'elementos');
                 
                 if (Object.keys(this.changes).length > 0) {
@@ -72,6 +85,10 @@ class VisualEditor {
             if (element) {
                 if (change.text !== undefined) {
                     element.textContent = change.text;
+                    // Marcar como editado manualmente para que i18n no lo sobreescriba
+                    if (change.overrideTranslation) {
+                        element.setAttribute('data-manual-edit', 'true');
+                    }
                 }
                 if (change.color) {
                     element.style.color = change.color;
@@ -102,13 +119,20 @@ class VisualEditor {
     }
     
     downloadAndSaveChanges() {
-        if (Object.keys(this.changes).length === 0) {
+        const hasNotes = this.clientNotes.trim().length > 0;
+        if (Object.keys(this.changes).length === 0 && !hasNotes) {
             this.showNotification('⚠️ No hay cambios para guardar. Edita algo primero.', 'info');
             return;
         }
         
         // Descargar archivo JSON con los cambios
-        const allChanges = {};
+        const allChanges = {
+            meta: {
+                page: this.pageId,
+                exportedAt: new Date().toISOString(),
+                notes: this.clientNotes.trim()
+            }
+        };
         allChanges[this.pageId] = this.changes;
         
         const data = JSON.stringify(allChanges, null, 2);
@@ -127,6 +151,12 @@ class VisualEditor {
     showInstructions() {
         const modal = document.createElement('div');
         modal.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm z-[99999] flex items-center justify-center';
+        const notesReminder = this.clientNotes.trim().length > 0 ? `
+                <div class="bg-purple-50 p-4 rounded-xl mb-4 border border-purple-100">
+                    <h3 class="font-bold text-purple-800 mb-2">📝 Tus notas también se guardaron</h3>
+                    <p class="text-sm text-purple-700">Comparte el archivo conmigo; el apartado <strong>"Notas para soporte"</strong> viene incluido para que sepamos qué falta.</p>
+                </div>
+        ` : '';
         modal.innerHTML = `
             <div class="bg-white rounded-2xl p-8 max-w-lg w-full mx-4 shadow-2xl">
                 <div class="text-center mb-6">
@@ -141,6 +171,7 @@ class VisualEditor {
                         <li><strong>3.</strong> Recarga la página para ver los cambios</li>
                     </ol>
                 </div>
+                ${notesReminder}
                 <button onclick="this.closest('.fixed').remove()" class="w-full px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:scale-105 transition">
                     ¡Entendido!
                 </button>
@@ -183,6 +214,13 @@ class VisualEditor {
         
         if (!this.changes[selector]) {
             this.changes[selector] = {};
+        }
+        
+        // Si el elemento tiene data-i18n, guardar para ambos idiomas
+        if (element.hasAttribute('data-i18n') && changeType === 'text') {
+            const i18nKey = element.getAttribute('data-i18n');
+            this.changes[selector].i18nKey = i18nKey;
+            this.changes[selector].overrideTranslation = true;
         }
         
         this.changes[selector][changeType] = value;
@@ -319,9 +357,14 @@ class VisualEditor {
     }
     
     showEditorToolbar() {
+        if (this.toolbarCollapsed) {
+            this.renderCollapsedToolbarButton();
+            return;
+        }
+        
         const toolbar = document.createElement('div');
         toolbar.id = 'editor-main-toolbar';
-        toolbar.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl shadow-2xl px-6 py-4 z-[99998]';
+        toolbar.className = 'fixed top-4 right-4 bg-white rounded-2xl shadow-2xl px-6 py-4 z-[99998] max-w-md w-full sm:w-[380px]';
         toolbar.innerHTML = `
             <div class="flex items-center gap-4 mb-3">
                 <div class="flex items-center gap-2 text-purple-600 font-bold">
@@ -330,25 +373,120 @@ class VisualEditor {
                 </div>
                 <div class="h-6 w-px bg-slate-300"></div>
                 <span class="text-sm text-slate-500">Haz clic en cualquier texto o imagen para editarlo</span>
+                <button id="collapse-toolbar-btn" class="ml-auto px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-lg text-xs font-semibold flex items-center gap-1" title="Minimizar panel">
+                    <span>—</span>
+                    <span>Minimizar</span>
+                </button>
             </div>
-            <div class="flex items-center gap-3">
+            <div class="flex flex-wrap items-center gap-3">
                 <button id="btn-download-json" class="flex-1 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl hover:scale-105 transition font-bold text-base flex items-center justify-center gap-2">
                     � Guardar Cambios
                 </button>
                 <button id="btn-export-wix" class="px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl hover:scale-105 transition font-semibold text-sm">
                     📤 Wix
                 </button>
+                <a href="editor-demo.html?edit=true" target="_blank" rel="noopener" class="px-4 py-3 bg-gradient-to-r from-slate-800 to-slate-900 text-white rounded-xl hover:scale-105 transition font-semibold text-sm flex items-center gap-2">
+                    🧪 Demo
+                </a>
             </div>
             <p class="text-xs text-slate-400 mt-2 text-center">Al guardar, se descargará un archivo. Reemplázalo en tu proyecto.</p>
+            <div class="mt-4 bg-slate-50 border border-slate-200 rounded-xl p-3">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-sm font-semibold text-slate-700 flex items-center gap-2">
+                        📝 Notas para soporte
+                    </div>
+                    <span class="text-[11px] text-slate-400">Se guardan en el JSON</span>
+                </div>
+                <textarea id="support-notes-input" rows="3" class="w-full text-sm text-slate-700 bg-white border border-slate-200 rounded-lg p-2 focus:border-purple-500 focus:outline-none" placeholder="Escribe aquí los cambios que no pudiste hacer o cualquier instrucción para soporte."></textarea>
+            </div>
         `;
         document.body.appendChild(toolbar);
         
         document.getElementById('btn-download-json').onclick = () => this.downloadAndSaveChanges();
         document.getElementById('btn-export-wix').onclick = () => this.exportForWix();
+        this.initializeNotesField();
+        document.getElementById('collapse-toolbar-btn').onclick = () => this.collapseToolbar();
     }
     
     hideEditorToolbar() {
         document.getElementById('editor-main-toolbar')?.remove();
+        document.getElementById('editor-toolbar-collapsed')?.remove();
+        this.toolbarCollapsed = false;
+    }
+
+    initializeNotesField() {
+        const notesInput = document.getElementById('support-notes-input');
+        if (notesInput) {
+            notesInput.value = this.clientNotes;
+            notesInput.addEventListener('input', (e) => this.handleNotesInput(e.target.value));
+        }
+    }
+
+    handleNotesInput(value) {
+        this.clientNotes = value;
+        this.persistNotesLocally();
+    }
+
+    persistNotesLocally() {
+        if (!this.notesStorageKey) return;
+        try {
+            localStorage.setItem(this.notesStorageKey, this.clientNotes);
+        } catch (e) {
+            console.log('ℹ️ No se pudo guardar nota local:', e.message);
+        }
+    }
+
+    collapseToolbar() {
+        if (this.toolbarCollapsed) return;
+        this.toolbarCollapsed = true;
+        document.getElementById('editor-main-toolbar')?.remove();
+        this.renderCollapsedToolbarButton();
+    }
+
+    renderCollapsedToolbarButton() {
+        if (document.getElementById('editor-toolbar-collapsed')) return;
+        const btn = document.createElement('button');
+        btn.id = 'editor-toolbar-collapsed';
+        btn.className = 'fixed bottom-28 right-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full shadow-xl hover:scale-105 transition z-[99998] flex items-center gap-2 text-sm font-semibold';
+        btn.innerHTML = `
+            <span>🎨 Editor Visual</span>
+            <span class="text-xs bg-white/20 px-2 py-0.5 rounded-full">Mostrar</span>
+        `;
+        btn.onclick = () => this.expandToolbar();
+        document.body.appendChild(btn);
+    }
+
+    expandToolbar() {
+        this.toolbarCollapsed = false;
+        document.getElementById('editor-toolbar-collapsed')?.remove();
+        this.showEditorToolbar();
+    }
+    
+    showI18nWarning(element) {
+        const i18nKey = element.getAttribute('data-i18n');
+        const rect = element.getBoundingClientRect();
+        
+        const warning = document.createElement('div');
+        warning.id = 'i18n-warning';
+        warning.className = 'fixed z-[99999] bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-3 rounded-xl shadow-2xl max-w-sm animate-scale-in';
+        warning.style.left = `${rect.left + window.scrollX}px`;
+        warning.style.top = `${rect.top + window.scrollY - 80}px`;
+        warning.innerHTML = `
+            <div class="flex items-start gap-3">
+                <div class="text-2xl">⚠️</div>
+                <div class="flex-1">
+                    <div class="font-bold text-sm mb-1">Texto Multilenguaje</div>
+                    <div class="text-xs text-white/90 mb-2">Este texto cambia automáticamente según el idioma (ES/EN).</div>
+                    <div class="text-xs bg-white/20 px-2 py-1 rounded font-mono">data-i18n="${i18nKey}"</div>
+                    <div class="text-xs mt-2 text-white/80">Si lo editas aquí, se guardará solo para el idioma actual.</div>
+                </div>
+                <button onclick="this.closest('#i18n-warning').remove()" class="text-white/70 hover:text-white text-xl leading-none">&times;</button>
+            </div>
+        `;
+        document.body.appendChild(warning);
+        
+        // Auto-cerrar después de 8 segundos
+        setTimeout(() => warning?.remove(), 8000);
     }
     
     saveAllChanges() {
@@ -603,10 +741,16 @@ class VisualEditor {
         document.getElementById('inline-cancel-btn')?.remove();
         document.getElementById('inline-color-toolbar')?.remove();
         document.getElementById('select-options-editor')?.remove();
+        document.getElementById('i18n-warning')?.remove();
         
         this.selectedElement = element;
         element.style.outline = '3px solid #8b5cf6';
         element.style.outlineOffset = '4px';
+        
+        // Advertir si el elemento tiene traducción automática
+        if (element.hasAttribute('data-i18n')) {
+            this.showI18nWarning(element);
+        }
         
         this.showElementInfo(element);
         

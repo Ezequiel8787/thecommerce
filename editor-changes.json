@@ -1,7 +1,43 @@
 {
+  "meta": {
+    "page": "index_html",
+    "exportedAt": "2025-12-23T22:18:10.317Z",
+    "notes": ""
+  },
   "index_html": {
     "span:eq(3)": {
       "text": "Mundo mundial"
+    },
+    "#calc-origin": {
+      "options": [
+        {
+          "value": "china",
+          "text": "China"
+        },
+        {
+          "value": "usa",
+          "text": "Estados Unidos"
+        },
+        {
+          "value": "nuevo",
+          "text": "México"
+        }
+      ]
+    },
+    "#close-calc": {
+      "color": "#06b6d4",
+      "text": "\n                \n                    \n                \n            "
+    },
+    "#calc-button": {
+      "color": "#f59e0b",
+      "text": "\n                        \n                            \n                        \n                        Calcular Costo Ahora\n                    "
+    },
+    "a:eq(11)": {
+      "color": "#f59e0b",
+      "text": "Solicitar Cotización"
+    },
+    "[data-hero=\"titulo\"]": {
+      "text": "Conectamos tu Negocio con el Mundo "
     }
   }
 }

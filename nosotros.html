@@ -19,20 +19,28 @@
                 <h1 class="text-2xl font-bold text-[#0f172a]">THM <span class="text-blue-600">Commerce</span></h1>
             </a>
             <div class="hidden md:flex items-center space-x-1">
-                <a href="index.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition">Inicio</a>
-                <a href="nosotros.html" class="px-4 py-2 text-blue-600 bg-blue-50 rounded-lg transition">Nosotros</a>
-                <a href="servicios.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition">Servicios</a>
-                <a href="direcciones.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition">Direcciones</a>
-                <a href="cotizaciones.html" class="ml-2 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:shadow-lg hover:scale-105 transition-all">Cotizar</a>
+                <a href="index.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" data-i18n="nav_inicio">Inicio</a>
+                <a href="nosotros.html" class="px-4 py-2 text-blue-600 bg-blue-50 rounded-lg transition" data-i18n="nav_nosotros">Nosotros</a>
+                <a href="servicios.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" data-i18n="nav_servicios">Servicios</a>
+                <a href="direcciones.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" data-i18n="nav_direcciones">Direcciones</a>
+                <a href="cotizaciones.html" class="ml-2 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:shadow-lg hover:scale-105 transition-all" data-i18n="nav_cotizar">Cotizar</a>
+                <div class="ml-4 flex items-center gap-2 border-l border-slate-200 pl-4">
+                    <button onclick="i18n.setLanguage('es')" data-lang="es" class="px-3 py-1.5 rounded-lg text-sm font-semibold transition hover:bg-slate-100" title="Español">
+                        🇲🇽 ES
+                    </button>
+                    <button onclick="i18n.setLanguage('en')" data-lang="en" class="px-3 py-1.5 rounded-lg text-sm font-semibold transition hover:bg-slate-100" title="English">
+                        🇺🇸 EN
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
     <section class="pt-32 pb-20 px-4 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
         <div class="max-w-7xl mx-auto text-center">
-            <span class="text-blue-400 font-semibold text-sm uppercase tracking-wider">Quiénes Somos</span>
-            <h1 class="text-5xl md:text-6xl font-black text-white mt-4 mb-6">Conectando Negocios, Construyendo Confianza</h1>
-            <p class="text-xl text-slate-300 max-w-3xl mx-auto">Más de 15 años facilitando el comercio internacional entre México, Estados Unidos y China.</p>
+            <span class="text-blue-400 font-semibold text-sm uppercase tracking-wider" data-i18n="about_badge">Quiénes Somos</span>
+            <h1 class="text-5xl md:text-6xl font-black text-white mt-4 mb-6" data-i18n="about_title">Conectando Negocios, Construyendo Confianza</h1>
+            <p class="text-xl text-slate-300 max-w-3xl mx-auto" data-i18n="about_subtitle">Más de 15 años facilitando el comercio internacional entre México, Estados Unidos y China.</p>
         </div>
     </section>
 
@@ -40,8 +48,8 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
                 <div>
-                    <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Nuestra Historia</span>
-                    <h2 class="text-4xl font-bold text-slate-900 mt-3 mb-6">Una Trayectoria de Éxito</h2>
+                    <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider" data-i18n="about_history_badge">Nuestra Historia</span>
+                    <h2 class="text-4xl font-bold text-slate-900 mt-3 mb-6" data-i18n="about_history_title">Una Trayectoria de Éxito</h2>
                     <p class="text-slate-600 mb-4 leading-relaxed" data-nosotros="p1">
                         THM Commerce nació en 2008 con una visión clara: simplificar el proceso de importación para empresas mexicanas que buscan expandir sus horizontes comerciales. Lo que comenzó como una pequeña operación en Chihuahua, se ha convertido en una red logística internacional con presencia en tres continentes.
                     </p>
@@ -66,9 +74,9 @@
     <section class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Nuestros Valores</span>
-                <h2 class="text-4xl font-bold text-slate-900 mt-3 mb-4">Lo Que Nos Define</h2>
-                <p class="text-slate-600 max-w-2xl mx-auto">Principios que guían cada decisión y acción en THM Commerce</p>
+                <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider" data-i18n="about_values_badge">Nuestros Valores</span>
+                <h2 class="text-4xl font-bold text-slate-900 mt-3 mb-4" data-i18n="about_values_title">Lo Que Nos Define</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto" data-i18n="about_values_subtitle">Principios que guían cada decisión y acción en THM Commerce</p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -110,8 +118,8 @@
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Nuestra Misión y Visión</span>
-                <h2 class="text-4xl font-bold text-slate-900 mt-3 mb-4">Hacia Dónde Vamos</h2>
+                <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider" data-i18n="about_mission_vision_badge">Nuestra Misión y Visión</span>
+                <h2 class="text-4xl font-bold text-slate-900 mt-3 mb-4" data-i18n="about_mission_vision_title">Hacia Dónde Vamos</h2>
             </div>
             
             <div class="grid md:grid-cols-2 gap-8">
@@ -121,7 +129,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Misión</h3>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4" data-i18n="about_mission_title">Misión</h3>
                     <p class="text-slate-600 leading-relaxed" data-nosotros="mision">
                         Facilitar el comercio internacional para empresas mexicanas, brindando soluciones logísticas integrales que garanticen seguridad, eficiencia y transparencia en cada operación, permitiendo a nuestros clientes enfocarse en el crecimiento de sus negocios.
                     </p>
@@ -134,7 +142,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Visión</h3>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4" data-i18n="about_vision_title">Visión</h3>
                     <p class="text-slate-600 leading-relaxed" data-nosotros="vision">
                         Ser la empresa líder en logística internacional en México, reconocida por nuestra innovación, confiabilidad y compromiso con el éxito de nuestros clientes, expandiendo nuestra red global y estableciendo nuevos estándares de excelencia en el sector.
                     </p>
@@ -146,8 +154,8 @@
     <section class="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Nuestro Equipo</h2>
-                <p class="text-blue-200 max-w-2xl mx-auto">Profesionales dedicados con experiencia en comercio internacional, logística y atención al cliente</p>
+                <h2 class="text-4xl font-bold mb-4" data-i18n="about_team_title">Nuestro Equipo</h2>
+                <p class="text-blue-200 max-w-2xl mx-auto" data-i18n="about_team_subtitle">Profesionales dedicados con experiencia en comercio internacional, logística y atención al cliente</p>
             </div>
             
             <div class="grid md:grid-cols-4 gap-8 text-center">
@@ -191,8 +199,8 @@
             <div class="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-3xl p-12 text-white text-center relative overflow-hidden">
                 <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent_50%)]"></div>
                 <div class="relative z-10">
-                    <h2 class="text-4xl font-bold mb-6">¿Listo para Trabajar con Nosotros?</h2>
-                    <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Únete a las más de 500 empresas que confían en THM Commerce para sus importaciones</p>
+                    <h2 class="text-4xl font-bold mb-6" data-i18n="about_cta_title">¿Listo para Trabajar con Nosotros?</h2>
+                    <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto" data-i18n="about_cta_subtitle">Únete a las más de 500 empresas que confían en THM Commerce para sus importaciones</p>
                     <div class="flex flex-wrap justify-center gap-4">
                         <a href="cotizaciones.html" class="px-8 py-4 bg-white text-blue-600 font-bold rounded-xl hover:scale-105 transition-transform shadow-xl">Solicitar Cotización</a>
                         <a href="direcciones.html" class="px-8 py-4 bg-blue-500 text-white font-bold rounded-xl hover:bg-blue-400 transition-all border-2 border-white/30">Contáctanos</a>
@@ -248,9 +256,9 @@
         </div>
     </footer>
 
+    <script src="translations.js"></script>
     <script src="content-loader.js"></script>
-    <script src="notifications.js"></script>
+    <script src="script.js"></script>
     <script src="visual-editor.js"></script>
-
 </body>
 </html>

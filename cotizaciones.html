@@ -19,20 +19,28 @@
                 <h1 class="text-2xl font-bold text-[#0f172a]">THM <span class="text-blue-600">Commerce</span></h1>
             </a>
             <div class="hidden md:flex items-center space-x-1">
-                <a href="index.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition">Inicio</a>
-                <a href="nosotros.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition">Nosotros</a>
-                <a href="servicios.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition">Servicios</a>
-                <a href="direcciones.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition">Direcciones</a>
-                <a href="cotizaciones.html" class="ml-2 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg">Cotizar</a>
+                <a href="index.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" data-i18n="nav_inicio">Inicio</a>
+                <a href="nosotros.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" data-i18n="nav_nosotros">Nosotros</a>
+                <a href="servicios.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" data-i18n="nav_servicios">Servicios</a>
+                <a href="direcciones.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" data-i18n="nav_direcciones">Direcciones</a>
+                <a href="cotizaciones.html" class="ml-2 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg" data-i18n="nav_cotizar">Cotizar</a>
+                <div class="ml-4 flex items-center gap-2 border-l border-slate-200 pl-4">
+                    <button onclick="i18n.setLanguage('es')" data-lang="es" class="px-3 py-1.5 rounded-lg text-sm font-semibold transition hover:bg-slate-100" title="Español">
+                        🇲🇽 ES
+                    </button>
+                    <button onclick="i18n.setLanguage('en')" data-lang="en" class="px-3 py-1.5 rounded-lg text-sm font-semibold transition hover:bg-slate-100" title="English">
+                        🇺🇸 EN
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
     <section class="pt-32 pb-20 px-4 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
         <div class="max-w-4xl mx-auto text-center">
-            <span class="text-blue-400 font-semibold text-sm uppercase tracking-wider">Solicita tu Cotización</span>
-            <h1 class="text-5xl md:text-6xl font-black text-white mt-4 mb-6">Comienza a Importar Hoy</h1>
-            <p class="text-xl text-slate-300">Completa el formulario y recibe una cotización personalizada en menos de 24 horas.</p>
+            <span class="text-blue-400 font-semibold text-sm uppercase tracking-wider" data-i18n="quote_badge">Solicita tu Cotización</span>
+            <h1 class="text-5xl md:text-6xl font-black text-white mt-4 mb-6" data-i18n="quote_title">Comienza a Importar Hoy</h1>
+            <p class="text-xl text-slate-300" data-i18n="quote_subtitle">Completa el formulario y recibe una cotización personalizada en menos de 24 horas.</p>
         </div>
     </section>
 
@@ -190,8 +198,8 @@
     <section class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-slate-900 mb-4">Proceso de Cotización</h2>
-                <p class="text-slate-600">Simple, rápido y transparente</p>
+                <h2 class="text-4xl font-bold text-slate-900 mb-4" data-i18n="quote_process_title">Proceso de Cotización</h2>
+                <p class="text-slate-600" data-i18n="quote_process_subtitle">Simple, rápido y transparente</p>
             </div>
             
             <div class="grid md:grid-cols-4 gap-6">
@@ -332,8 +340,9 @@
             }
         });
     </script>
-    <script src="notifications.js"></script>
+    <script src="translations.js"></script>
+    <script src="content-loader.js"></script>
+    <script src="script.js"></script>
     <script src="visual-editor.js"></script>
-
 </body>
 </html>

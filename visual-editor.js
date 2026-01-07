@@ -224,6 +224,8 @@ class VisualEditor {
         }
         
         this.changes[selector][changeType] = value;
+        
+        // Auto-guardar cambios
         this.saveChanges();
         console.log('💾 Total cambios guardados:', Object.keys(this.changes).length);
     }
@@ -1513,41 +1515,8 @@ class VisualEditor {
                     <label class="flex-1 px-3 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition flex items-center justify-center gap-2 text-xs font-semibold cursor-pointer border border-white/30 hover:border-white/50">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                         Subir Foto
-                        <input type="file" class="hidden" accept="image/*">
-                    </label>
-                </div>
-                <div class="text-white/70 text-[10px] mb-1 px-1">O pega una URL:</div>
-            `;
-            
-            // Agregar input para URL
-            const urlInput = document.createElement('input');
-            urlInput.type = 'text';
-            urlInput.placeholder = 'https://...';
-            urlInput.className = 'px-2 py-1 rounded text-xs text-slate-900 w-full mb-1 border-none focus:ring-2 focus:ring-purple-500';
-            urlInput.onkeydown = (e) => {
-                if (e.key === 'Enter' && urlInput.value) {
-                    element.src = urlInput.value;
-                    // Guardar el cambio de imagen
-                    this.trackChange(element, 'src', urlInput.value);
-                    this.showNotification('🖼️ Imagen actualizada', 'success');
-                    this.removeFloatingMenu();
-                }
-            };
-            
-            const dragDropHint = document.createElement('div');
-            dragDropHint.className = 'text-white/50 text-[10px] text-center mt-1 italic';
-            dragDropHint.textContent = 'O arrastra una imagen aquí';
-            
-            menu.innerHTML = buttons;
-            menu.appendChild(urlInput);
-            menu.appendChild(dragDropHint);
-            document.body.appendChild(menu);
-            
-            const fileInput = menu.querySelector('input[type="file"]');
-            fileInput.onchange = (e) => this.handleFileUpload(e.target, element);
-            
-            return;
         } else {
+            element.textContent = originalText;
             buttons = `
                 <button onclick="visualEditor.showColorPickerInline()" class="px-3 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition flex items-center gap-2 text-sm font-semibold" title="Cambiar color">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1985,9 +1954,11 @@ class VisualEditor {
         if (this.selectedElement) {
             if (textColor && /^#[0-9A-F]{6}$/i.test(textColor)) {
                 this.selectedElement.style.color = textColor;
+                this.trackChange(this.selectedElement, 'color', textColor);
             }
             if (bgColor && /^#[0-9A-F]{6}$/i.test(bgColor)) {
                 this.selectedElement.style.backgroundColor = bgColor;
+                this.trackChange(this.selectedElement, 'backgroundColor', bgColor);
             }
             this.showNotification('🎨 Colores aplicados exitosamente', 'success');
         }
@@ -2063,6 +2034,7 @@ class VisualEditor {
         
         if (this.selectedElement && this.selectedElement.tagName === 'IMG') {
             this.selectedElement.src = newUrl;
+            this.trackChange(this.selectedElement, 'src', newUrl);
             this.showNotification('🖼️ Imagen actualizada', 'success');
         }
         
@@ -2089,15 +2061,8 @@ class VisualEditor {
     }
 
     saveChanges() {
-        this.showNotification('💾 Guardando cambios...', 'info');
-        
-        setTimeout(() => {
-            if (typeof saveContent === 'function') {
-                saveContent();
-            } else {
-                this.showNotification('✅ Cambios guardados en la sesión', 'success');
-            }
-        }, 500);
+        console.log('💾 Guardando cambios...');
+        this.downloadAndSaveChanges();
     }
 
     showNotification(message, type = 'info') {

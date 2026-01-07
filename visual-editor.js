@@ -302,32 +302,6 @@ class VisualEditor {
                 position: absolute !important;
                 z-index: 99999 !important;
             }
-            .editor-tooltip {
-                position: absolute !important;
-                background: #1e293b !important;
-                color: white !important;
-                padding: 8px 12px !important;
-                border-radius: 8px !important;
-                font-size: 12px !important;
-                white-space: nowrap !important;
-                z-index: 10000 !important;
-                pointer-events: none !important;
-                opacity: 0 !important;
-                transition: opacity 0.2s ease !important;
-            }
-            .editor-tooltip.show {
-                opacity: 1 !important;
-            }
-            .editor-tooltip::after {
-                content: '' !important;
-                position: absolute !important;
-                top: 100% !important;
-                left: 50% !important;
-                margin-left: -5px !important;
-                border-width: 5px !important;
-                border-style: solid !important;
-                border-color: #1e293b transparent transparent transparent !important;
-            }
         `;
         document.head.appendChild(styles);
         
@@ -460,28 +434,7 @@ class VisualEditor {
         highlight.style.width = rect.width + 10 + 'px';
         highlight.style.height = rect.height + 10 + 'px';
         
-        // Create tooltip
-        const tooltip = document.createElement('div');
-        tooltip.className = 'tutorial-tooltip fixed bg-white rounded-xl shadow-2xl p-4 z-[99998] animate-scale-in max-w-xs';
-        tooltip.style.cssText = position === 'top' ? 
-            `bottom: ${window.innerHeight - rect.top + 20}px; left: ${rect.left}px;` :
-            `top: ${rect.bottom + 20}px; left: ${rect.left}px;`;
-        
-        tooltip.innerHTML = `
-            <h4 class="font-bold text-slate-900 mb-2">${title}</h4>
-            <p class="text-sm text-slate-600 mb-3">${content}</p>
-            <button class="px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition font-semibold text-sm">
-                Entendido →
-            </button>
-        `;
-        
         document.body.appendChild(highlight);
-        document.body.appendChild(tooltip);
-        
-        tooltip.querySelector('button').addEventListener('click', () => {
-            highlight.remove();
-            tooltip.remove();
-        });
     }
     
     showTutorialComplete() {

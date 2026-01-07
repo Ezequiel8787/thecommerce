@@ -5,6 +5,7 @@ const translations = {
         nav_nosotros: "Nosotros",
         nav_servicios: "Servicios",
         nav_direcciones: "Direcciones",
+        nav_pagos: "Pagos Proveedor",
         nav_cotizar: "Cotizar",
         
         // Hero Section
@@ -153,7 +154,40 @@ const translations = {
         calc_weight: "Peso (kg)",
         calc_volume: "Volumen (m³)",
         calc_btn: "Calcular Costos",
-        calc_disclaimer: "* Estimación basada en tarifas promedio. Cotización oficial puede variar."
+        calc_disclaimer: "* Estimación basada en tarifas promedio. Cotización oficial puede variar.",
+        
+        // Pagos Proveedor Page
+        pagos_badge: "Servicios Especializados",
+        pagos_title: "Pagos Proveedor",
+        pagos_subtitle: "Soluciones integrales de pago y logística para diferentes sectores industriales",
+        sectores_title: "Sectores Atendidos",
+        sectores_subtitle: "Especializados en soluciones para cada industria",
+        sector_medico: "Sector Médico",
+        sector_medico_desc: "Equipamiento médico y suministros hospitalarios con certificaciones internacionales",
+        sector_industrial: "Sector Industrial",
+        sector_industrial_desc: "Maquinaria pesada y componentes industriales con garantía extendida",
+        sector_automotriz: "Sector Automotriz",
+        sector_automotriz_desc: "Repuestos y accesorios vehiculares con control de calidad riguroso",
+        sector_alimenticio: "Sector Alimenticio",
+        sector_alimenticio_desc: "Equipamiento para procesamiento de alimentos con certificaciones sanitarias",
+        tapioca_title: "Tapioca - Soluciones Completas",
+        tapioca_subtitle: "Servicios especializados en reparación y mantenimiento con cobertura nacional",
+        tapioca_reparacion: "Reparación",
+        tapioca_reparacion_desc: "Servicio técnico especializado para todo tipo de maquinaria",
+        tapioca_mantenimiento: "Mantenimiento de equipos",
+        tapioca_mantenimiento_desc: "Programas de mantenimiento preventivo y correctivo",
+        tapioca_logistica: "Logística nacional",
+        tapioca_logistica_desc: "Distribución y entrega en todo el territorio nacional",
+        envio_terrestre_title: "Envío Terrestre",
+        envio_terrestre_desc: "Transporte terrestre eficiente y seguro para mercancías nacionales con cobertura completa",
+        envio_terrestre_feature1: "Seguro de carga completo",
+        envio_terrestre_feature2: "Seguimiento en tiempo real",
+        envio_terrestre_feature3: "Entrega puerta a puerta",
+        logistica_internacional_title: "Logística Internacional",
+        logistica_internacional_desc: "Coordinación integral de envíos internacionales con aduanas y documentación completa",
+        logistica_internacional_feature1: "Gestión aduanal completa",
+        logistica_internacional_feature2: "Documentación internacional",
+        logistica_internacional_feature3: "Consolidación de carga"
     },
     
     en: {
@@ -162,6 +196,7 @@ const translations = {
         nav_nosotros: "About Us",
         nav_servicios: "Services",
         nav_direcciones: "Locations",
+        nav_pagos: "Supplier Payments",
         nav_cotizar: "Get Quote",
         
         // Hero Section
@@ -310,7 +345,40 @@ const translations = {
         calc_weight: "Weight (kg)",
         calc_volume: "Volume (m³)",
         calc_btn: "Calculate Costs",
-        calc_disclaimer: "* Estimate based on average rates. Official quote may vary."
+        calc_disclaimer: "* Estimate based on average rates. Official quote may vary.",
+        
+        // Pagos Proveedor Page
+        pagos_badge: "Specialized Services",
+        pagos_title: "Supplier Payments",
+        pagos_subtitle: "Comprehensive payment and logistics solutions for different industrial sectors",
+        sectores_title: "Sectors Served",
+        sectores_subtitle: "Specialized solutions for each industry",
+        sector_medico: "Medical Sector",
+        sector_medico_desc: "Medical equipment and hospital supplies with international certifications",
+        sector_industrial: "Industrial Sector",
+        sector_industrial_desc: "Heavy machinery and industrial components with extended warranty",
+        sector_automotriz: "Automotive Sector",
+        sector_automotriz_desc: "Vehicle parts and accessories with rigorous quality control",
+        sector_alimenticio: "Food Sector",
+        sector_alimenticio_desc: "Food processing equipment with sanitary certifications",
+        tapioca_title: "Tapioca - Complete Solutions",
+        tapioca_subtitle: "Specialized repair and maintenance services with national coverage",
+        tapioca_reparacion: "Repair",
+        tapioca_reparacion_desc: "Specialized technical service for all types of machinery",
+        tapioca_mantenimiento: "Equipment Maintenance",
+        tapioca_mantenimiento_desc: "Preventive and corrective maintenance programs",
+        tapioca_logistica: "National Logistics",
+        tapioca_logistica_desc: "Distribution and delivery throughout the national territory",
+        envio_terrestre_title: "Ground Shipping",
+        envio_terrestre_desc: "Efficient and secure ground transportation for national goods with full coverage",
+        envio_terrestre_feature1: "Complete cargo insurance",
+        envio_terrestre_feature2: "Real-time tracking",
+        envio_terrestre_feature3: "Door-to-door delivery",
+        logistica_internacional_title: "International Logistics",
+        logistica_internacional_desc: "Comprehensive coordination of international shipments with customs and complete documentation",
+        logistica_internacional_feature1: "Complete customs management",
+        logistica_internacional_feature2: "International documentation",
+        logistica_internacional_feature3: "Cargo consolidation"
     }
 };
 

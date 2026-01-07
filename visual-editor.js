@@ -236,8 +236,55 @@ class VisualEditor {
                 from { transform: scale(0.8); opacity: 0; }
                 to { transform: scale(1); opacity: 1; }
             }
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
             .animate-scale-in {
                 animation: scaleIn 0.2s ease;
+            }
+            .animate-pulse {
+                animation: pulse 2s ease-in-out infinite;
+            }
+            .animate-fade-in {
+                animation: fadeIn 0.3s ease;
+            }
+            .editable-hover {
+                cursor: pointer !important;
+                position: relative !important;
+                transition: all 0.2s ease !important;
+            }
+            .editable-hover:hover {
+                outline: 2px dashed #3b82f6 !important;
+                outline-offset: 4px !important;
+                background-color: rgba(59, 130, 246, 0.05) !important;
+                border-radius: 4px !important;
+            }
+            .editable-hover::after {
+                content: '✏️' !important;
+                position: absolute !important;
+                top: -8px !important;
+                right: -8px !important;
+                background: #3b82f6 !important;
+                color: white !important;
+                width: 20px !important;
+                height: 20px !important;
+                border-radius: 50% !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                font-size: 10px !important;
+                opacity: 0 !important;
+                transition: opacity 0.2s ease !important;
+                pointer-events: none !important;
+                z-index: 1000 !important;
+            }
+            .editable-hover:hover::after {
+                opacity: 1 !important;
             }
             #toggle-edit-mode {
                 position: fixed !important;
@@ -253,21 +300,204 @@ class VisualEditor {
                 position: absolute !important;
                 z-index: 99999 !important;
             }
+            .editor-tooltip {
+                position: absolute !important;
+                background: #1e293b !important;
+                color: white !important;
+                padding: 8px 12px !important;
+                border-radius: 8px !important;
+                font-size: 12px !important;
+                white-space: nowrap !important;
+                z-index: 10000 !important;
+                pointer-events: none !important;
+                opacity: 0 !important;
+                transition: opacity 0.2s ease !important;
+            }
+            .editor-tooltip.show {
+                opacity: 1 !important;
+            }
+            .editor-tooltip::after {
+                content: '' !important;
+                position: absolute !important;
+                top: 100% !important;
+                left: 50% !important;
+                margin-left: -5px !important;
+                border-width: 5px !important;
+                border-style: solid !important;
+                border-color: #1e293b transparent transparent transparent !important;
+            }
         `;
         document.head.appendChild(styles);
         
         const editorHTML = `
-            <button id="toggle-edit-mode" class="fixed bottom-20 right-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-4 rounded-full shadow-2xl hover:scale-110 transition-all z-50 flex items-center gap-2 font-bold">
-                <span class="text-2xl">✏️</span>
-                <span>Modo Edición</span>
+            <button id="toggle-edit-mode" class="fixed bottom-20 right-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-4 rounded-full shadow-2xl hover:scale-110 transition-all z-50 flex items-center gap-2 font-bold animate-pulse">
+                <span class="text-2xl">✨</span>
+                <span>Editar Sitio</span>
             </button>
 
             <div id="edit-overlay" class="fixed inset-0 bg-black/20 z-40 hidden pointer-events-none"></div>
+            
+            <!-- Tutorial Guide -->
+            <div id="tutorial-guide" class="fixed bottom-24 right-4 bg-white rounded-2xl shadow-2xl p-4 max-w-xs z-50 animate-fade-in">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-2xl">👋</span>
+                    <h3 class="font-bold text-slate-900">¡Bienvenido al Editor!</h3>
+                </div>
+                <p class="text-sm text-slate-600 mb-3">Haz clic en el botón "Editar Sitio" para comenzar a modificar tu página web fácilmente.</p>
+                <div class="flex gap-2">
+                    <button id="start-tutorial" class="flex-1 px-3 py-2 bg-emerald-500 text-white text-sm rounded-lg hover:bg-emerald-600 transition">
+                        Comenzar Tutorial
+                    </button>
+                    <button id="skip-tutorial" class="px-3 py-2 bg-slate-200 text-slate-700 text-sm rounded-lg hover:bg-slate-300 transition">
+                        Omitir
+                    </button>
+                </div>
+            </div>
         `;
         
         document.body.insertAdjacentHTML('beforeend', editorHTML);
         
+        // Setup tutorial
+        this.setupTutorial();
+        
         document.getElementById('toggle-edit-mode').addEventListener('click', () => this.toggleEditMode());
+    }
+
+    setupTutorial() {
+        // Auto-hide tutorial after 10 seconds
+        setTimeout(() => {
+            const tutorial = document.getElementById('tutorial-guide');
+            if (tutorial && !tutorial.dataset.dismissed) {
+                tutorial.classList.add('animate-fade-in');
+                setTimeout(() => tutorial.remove(), 300);
+            }
+        }, 10000);
+        
+        // Tutorial buttons
+        const startBtn = document.getElementById('start-tutorial');
+        const skipBtn = document.getElementById('skip-tutorial');
+        
+        if (startBtn) {
+            startBtn.addEventListener('click', () => {
+                this.startInteractiveTutorial();
+                document.getElementById('tutorial-guide').dataset.dismissed = 'true';
+                document.getElementById('tutorial-guide').remove();
+            });
+        }
+        
+        if (skipBtn) {
+            skipBtn.addEventListener('click', () => {
+                document.getElementById('tutorial-guide').dataset.dismissed = 'true';
+                document.getElementById('tutorial-guide').remove();
+            });
+        }
+    }
+    
+    startInteractiveTutorial() {
+        const steps = [
+            {
+                element: '#toggle-edit-mode',
+                title: '🚀 Botón de Edición',
+                content: 'Este botón activa el modo edición. Haz clic para comenzar.',
+                position: 'top'
+            },
+            {
+                element: 'h1, h2, h3',
+                title: '📝 Editar Textos',
+                content: 'Haz clic en cualquier título o texto para editarlo directamente.',
+                position: 'center'
+            },
+            {
+                element: 'img',
+                title: '🖼️ Cambiar Imágenes',
+                content: 'Haz clic en las imágenes para cambiarlas por nuevas.',
+                position: 'center'
+            }
+        ];
+        
+        let currentStep = 0;
+        
+        const showStep = (stepIndex) => {
+            if (stepIndex >= steps.length) {
+                this.showTutorialComplete();
+                return;
+            }
+            
+            const step = steps[stepIndex];
+            const elements = document.querySelectorAll(step.element);
+            
+            if (elements.length > 0) {
+                const element = elements[0];
+                this.highlightElement(element, step.title, step.content, step.position);
+            } else {
+                showStep(stepIndex + 1);
+            }
+        };
+        
+        showStep(0);
+    }
+    
+    highlightElement(element, title, content, position = 'top') {
+        // Remove existing highlights
+        document.querySelectorAll('.tutorial-highlight').forEach(el => el.remove());
+        
+        // Create highlight
+        const highlight = document.createElement('div');
+        highlight.className = 'tutorial-highlight fixed pointer-events-none z-[99997] animate-scale-in';
+        highlight.style.cssText = `
+            border: 3px solid #10b981;
+            border-radius: 8px;
+            position: absolute;
+            background: rgba(16, 185, 129, 0.1);
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7);
+        `;
+        
+        const rect = element.getBoundingClientRect();
+        highlight.style.left = rect.left - 5 + 'px';
+        highlight.style.top = rect.top - 5 + 'px';
+        highlight.style.width = rect.width + 10 + 'px';
+        highlight.style.height = rect.height + 10 + 'px';
+        
+        // Create tooltip
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tutorial-tooltip fixed bg-white rounded-xl shadow-2xl p-4 z-[99998] animate-scale-in max-w-xs';
+        tooltip.style.cssText = position === 'top' ? 
+            `bottom: ${window.innerHeight - rect.top + 20}px; left: ${rect.left}px;` :
+            `top: ${rect.bottom + 20}px; left: ${rect.left}px;`;
+        
+        tooltip.innerHTML = `
+            <h4 class="font-bold text-slate-900 mb-2">${title}</h4>
+            <p class="text-sm text-slate-600 mb-3">${content}</p>
+            <button class="px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition font-semibold text-sm">
+                Entendido →
+            </button>
+        `;
+        
+        document.body.appendChild(highlight);
+        document.body.appendChild(tooltip);
+        
+        tooltip.querySelector('button').addEventListener('click', () => {
+            highlight.remove();
+            tooltip.remove();
+        });
+    }
+    
+    showTutorialComplete() {
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm z-[99999] flex items-center justify-center';
+        modal.innerHTML = `
+            <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl animate-scale-in text-center">
+                <div class="text-6xl mb-4">🎉</div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-2">¡Tutorial Completado!</h3>
+                <p class="text-slate-600 mb-6">Ahora estás listo para editar tu sitio web como un profesional.</p>
+                <button class="px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold rounded-xl hover:scale-105 transition">
+                    🚀 Comenzar a Editar
+                </button>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        modal.querySelector('button').addEventListener('click', () => modal.remove());
     }
 
     toggleEditMode() {
@@ -283,17 +513,18 @@ class VisualEditor {
         
         if (this.editMode) {
             button.innerHTML = '<span class="text-2xl">✖️</span><span>Salir</span>';
-            button.classList.remove('from-pink-500', 'to-purple-600');
+            button.classList.remove('from-emerald-500', 'to-teal-600');
             button.classList.add('from-red-500', 'to-red-600');
             overlay.classList.remove('hidden');
             document.body.classList.add('visual-editor-active');
             this.handleOverlays(true);
             this.enableEditing();
             this.showEditorToolbar();
+            this.setupQuickActions();
         } else {
-            button.innerHTML = '<span class="text-2xl">✏️</span><span>Modo Edición</span>';
+            button.innerHTML = '<span class="text-2xl">✨</span><span>Editar Sitio</span>';
             button.classList.remove('from-red-500', 'to-red-600');
-            button.classList.add('from-pink-500', 'to-purple-600');
+            button.classList.add('from-emerald-500', 'to-teal-600');
             overlay.classList.add('hidden');
             document.body.classList.remove('visual-editor-active');
             this.handleOverlays(false);
@@ -302,23 +533,205 @@ class VisualEditor {
         }
     }
     
+    setupQuickActions() {
+        // Quick edit text
+        const quickTextBtn = document.getElementById('quick-edit-text');
+        if (quickTextBtn) {
+            quickTextBtn.addEventListener('click', () => {
+                this.highlightAllEditableElements('text');
+                this.showNotification('📝 Haz clic en cualquier texto para editarlo', 'info');
+            });
+        }
+        
+        // Quick edit images
+        const quickImagesBtn = document.getElementById('quick-edit-images');
+        if (quickImagesBtn) {
+            quickImagesBtn.addEventListener('click', () => {
+                this.highlightAllEditableElements('images');
+                this.showNotification('🖼️ Haz clic en cualquier imagen para cambiarla', 'info');
+            });
+        }
+        
+        // Quick colors
+        const quickColorsBtn = document.getElementById('quick-edit-colors');
+        if (quickColorsBtn) {
+            quickColorsBtn.addEventListener('click', () => {
+                this.showColorPicker();
+                this.showNotification('🎨 Selecciona un elemento y luego un color', 'info');
+            });
+        }
+        
+        // Preview mode
+        const quickPreviewBtn = document.getElementById('quick-preview');
+        if (quickPreviewBtn) {
+            quickPreviewBtn.addEventListener('click', () => {
+                this.togglePreviewMode();
+            });
+        }
+        
+        // Help button
+        const helpBtn = document.getElementById('btn-help');
+        if (helpBtn) {
+            helpBtn.addEventListener('click', () => {
+                this.showHelpModal();
+            });
+        }
+    }
+    
+    highlightAllEditableElements(type) {
+        // Remove existing highlights
+        document.querySelectorAll('.editable-highlight').forEach(el => {
+            el.classList.remove('editable-highlight');
+        });
+        
+        if (type === 'text') {
+            document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a, button').forEach(el => {
+                if (this.isElementEditable(el)) {
+                    el.classList.add('editable-highlight');
+                    el.style.outline = '2px solid #10b981';
+                    el.style.outlineOffset = '2px';
+                    el.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+                }
+            });
+        } else if (type === 'images') {
+            document.querySelectorAll('img').forEach(el => {
+                el.classList.add('editable-highlight');
+                el.style.outline = '3px solid #3b82f6';
+                el.style.outlineOffset = '3px';
+                el.style.borderRadius = '8px';
+            });
+        }
+        
+        // Remove highlights after 3 seconds
+        setTimeout(() => {
+            document.querySelectorAll('.editable-highlight').forEach(el => {
+                el.classList.remove('editable-highlight');
+                el.style.outline = '';
+                el.style.outlineOffset = '';
+                el.style.backgroundColor = '';
+                el.style.borderRadius = '';
+            });
+        }, 3000);
+    }
+    
+    isElementEditable(element) {
+        const tagName = element.tagName.toLowerCase();
+        const editableTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'a', 'button', 'div'];
+        
+        // Skip certain elements
+        if (element.id && (element.id.includes('toggle') || element.id.includes('editor') || element.id.includes('password'))) {
+            return false;
+        }
+        
+        // Skip if it's inside the editor toolbar
+        if (element.closest('#editor-main-toolbar')) {
+            return false;
+        }
+        
+        return editableTags.includes(tagName) && element.textContent.trim().length > 0;
+    }
+    
+    showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `fixed top-20 right-4 px-6 py-3 rounded-xl shadow-2xl z-[99999] animate-scale-in font-semibold text-sm`;
+        
+        if (type === 'info') {
+            notification.classList.add('bg-blue-500', 'text-white');
+        } else if (type === 'success') {
+            notification.classList.add('bg-emerald-500', 'text-white');
+        } else if (type === 'error') {
+            notification.classList.add('bg-red-500', 'text-white');
+        }
+        
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.classList.add('animate-fade-in');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+    
+    showHelpModal() {
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm z-[99999] flex items-center justify-center';
+        modal.innerHTML = `
+            <div class="bg-white rounded-2xl p-8 max-w-2xl w-full mx-4 shadow-2xl animate-scale-in max-h-[80vh] overflow-y-auto">
+                <div class="text-center mb-6">
+                    <div class="text-5xl mb-4">❓</div>
+                    <h2 class="text-2xl font-bold text-slate-900">Ayuda del Editor</h2>
+                </div>
+                
+                <div class="space-y-4 mb-6">
+                    <div class="bg-emerald-50 rounded-xl p-4 border border-emerald-200">
+                        <h3 class="font-bold text-emerald-800 mb-2">📝 Editar Textos</h3>
+                        <p class="text-sm text-slate-700">Haz clic en cualquier texto para editarlo directamente. Los cambios se guardan automáticamente.</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
+                        <h3 class="font-bold text-blue-800 mb-2">🖼️ Cambiar Imágenes</h3>
+                        <p class="text-sm text-slate-700">Haz clic en una imagen y pega una nueva URL o arrastra una imagen desde tu computadora.</p>
+                    </div>
+                    
+                    <div class="bg-purple-50 rounded-xl p-4 border border-purple-200">
+                        <h3 class="font-bold text-purple-800 mb-2">🎨 Cambiar Colores</h3>
+                        <p class="text-sm text-slate-700">Selecciona un elemento y usa el selector de colores para cambiar su color de texto o fondo.</p>
+                    </div>
+                    
+                    <div class="bg-orange-50 rounded-xl p-4 border border-orange-200">
+                        <h3 class="font-bold text-orange-800 mb-2">💾 Guardar Cambios</h3>
+                        <p class="text-sm text-slate-700">Haz clic en "Guardar Cambios" para descargar un archivo JSON con todas tus modificaciones.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-2">⌨️ Atajos de Teclado</h3>
+                    <div class="grid grid-cols-2 gap-2 text-sm">
+                        <div><kbd class="px-2 py-1 bg-white rounded">Esc</kbd> - Salir del modo edición</div>
+                        <div><kbd class="px-2 py-1 bg-white rounded">Ctrl+Z</kbd> - Deshacer último cambio</div>
+                        <div><kbd class="px-2 py-1 bg-white rounded">Ctrl+S</kbd> - Guardar cambios</div>
+                        <div><kbd class="px-2 py-1 bg-white rounded">Ctrl+P</kbd> - Vista previa</div>
+                    </div>
+                </div>
+                
+                <div class="flex gap-3 mt-6">
+                    <button class="flex-1 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold rounded-xl hover:scale-105 transition">
+                        Entendido
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        modal.querySelector('button').addEventListener('click', () => modal.remove());
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.remove();
+        });
+    }
+    
     showPasswordModal() {
         const modal = document.createElement('div');
         modal.id = 'password-modal';
         modal.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm z-[99999] flex items-center justify-center';
         modal.innerHTML = `
-            <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
+            <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl animate-scale-in">
                 <div class="text-center mb-6">
                     <div class="text-5xl mb-4">🔐</div>
                     <h2 class="text-2xl font-bold text-slate-900">Acceso al Editor</h2>
                     <p class="text-slate-600 mt-2">Ingresa la contraseña para editar el contenido</p>
+                    <div class="mt-4 p-3 bg-emerald-50 rounded-lg border border-emerald-200">
+                        <p class="text-xs text-emerald-700 font-semibold">💡 Contraseña sugerida: <code class="bg-emerald-100 px-2 py-1 rounded">thm2024</code></p>
+                    </div>
                 </div>
-                <input type="password" id="editor-password-input" placeholder="Contraseña" 
-                    class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-purple-500 focus:outline-none text-center text-lg mb-4">
-                <div id="password-error" class="text-red-500 text-sm text-center mb-4 hidden">Contraseña incorrecta</div>
+                <input type="password" id="editor-password-input" placeholder="Ingresa la contraseña" 
+                    class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-emerald-500 focus:outline-none text-center text-lg mb-4">
+                <div id="password-error" class="text-red-500 text-sm text-center mb-4 hidden">
+                    <span class="font-semibold">❌ Contraseña incorrecta</span>
+                    <br>Inténtalo de nuevo o usa la contraseña sugerida
+                </div>
                 <div class="flex gap-3">
-                    <button id="password-submit" class="flex-1 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:scale-105 transition">
-                        Entrar
+                    <button id="password-submit" class="flex-1 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold rounded-xl hover:scale-105 transition">
+                        🚀 Entrar al Editor
                     </button>
                     <button id="password-cancel" class="px-6 py-3 bg-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-300 transition">
                         Cancelar
@@ -364,32 +777,52 @@ class VisualEditor {
         
         const toolbar = document.createElement('div');
         toolbar.id = 'editor-main-toolbar';
-        toolbar.className = 'fixed top-4 right-4 bg-white rounded-2xl shadow-2xl px-6 py-4 z-[99998] max-w-md w-full sm:w-[380px]';
+        toolbar.className = 'fixed top-4 right-4 bg-white rounded-2xl shadow-2xl px-6 py-4 z-[99998] max-w-md w-full sm:w-[420px] animate-scale-in';
         toolbar.innerHTML = `
-            <div class="flex items-center gap-4 mb-3">
-                <div class="flex items-center gap-2 text-purple-600 font-bold">
+            <div class="flex items-center gap-4 mb-4">
+                <div class="flex items-center gap-2 text-emerald-600 font-bold">
                     <span class="text-xl">🎨</span>
                     <span>Editor Visual</span>
                 </div>
                 <div class="h-6 w-px bg-slate-300"></div>
-                <span class="text-sm text-slate-500">Haz clic en cualquier texto o imagen para editarlo</span>
+                <span class="text-sm text-slate-500">✨ Haz clic en cualquier elemento para editarlo</span>
                 <button id="collapse-toolbar-btn" class="ml-auto px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-lg text-xs font-semibold flex items-center gap-1" title="Minimizar panel">
                     <span>—</span>
                     <span>Minimizar</span>
                 </button>
             </div>
+            
+            <!-- Quick Actions -->
+            <div class="mb-4 p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                <h4 class="text-sm font-bold text-emerald-800 mb-2">🚀 Acciones Rápidas</h4>
+                <div class="grid grid-cols-2 gap-2">
+                    <button id="quick-edit-text" class="px-3 py-2 bg-white text-emerald-700 text-xs rounded-lg hover:bg-emerald-100 transition font-semibold border border-emerald-300">
+                        📝 Editar Textos
+                    </button>
+                    <button id="quick-edit-images" class="px-3 py-2 bg-white text-emerald-700 text-xs rounded-lg hover:bg-emerald-100 transition font-semibold border border-emerald-300">
+                        🖼️ Cambiar Imágenes
+                    </button>
+                    <button id="quick-edit-colors" class="px-3 py-2 bg-white text-emerald-700 text-xs rounded-lg hover:bg-emerald-100 transition font-semibold border border-emerald-300">
+                        🎨 Colores
+                    </button>
+                    <button id="quick-preview" class="px-3 py-2 bg-white text-emerald-700 text-xs rounded-lg hover:bg-emerald-100 transition font-semibold border border-emerald-300">
+                        👁️ Vista Previa
+                    </button>
+                </div>
+            </div>
+            
             <div class="flex flex-wrap items-center gap-3">
                 <button id="btn-download-json" class="flex-1 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl hover:scale-105 transition font-bold text-base flex items-center justify-center gap-2">
-                    � Guardar Cambios
+                    💾 Guardar Cambios
                 </button>
                 <button id="btn-export-wix" class="px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl hover:scale-105 transition font-semibold text-sm">
                     📤 Wix
                 </button>
-                <a href="editor-demo.html?edit=true" target="_blank" rel="noopener" class="px-4 py-3 bg-gradient-to-r from-slate-800 to-slate-900 text-white rounded-xl hover:scale-105 transition font-semibold text-sm flex items-center gap-2">
-                    🧪 Demo
-                </a>
+                <button id="btn-help" class="px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:scale-105 transition font-semibold text-sm">
+                    ❓ Ayuda
+                </button>
             </div>
-            <p class="text-xs text-slate-400 mt-2 text-center">Al guardar, se descargará un archivo. Reemplázalo en tu proyecto.</p>
+            <p class="text-xs text-slate-400 mt-2 text-center">💡 Los cambios se guardan automáticamente. Descarga el archivo al final.</p>
             <div class="mt-4 bg-slate-50 border border-slate-200 rounded-xl p-3">
                 <div class="flex items-center justify-between mb-2">
                     <div class="text-sm font-semibold text-slate-700 flex items-center gap-2">

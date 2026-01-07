@@ -7,9 +7,19 @@ class VisualEditor {
         this.clientNotes = '';
         this.notesStorageKey = '';
         this.toolbarCollapsed = false;
+        // Detectar página actual correctamente
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        this.pageId = currentPage.replace('.html', '_html');
+        // Si no tiene extensión, asumir que es index.html (para URLs como / o /?edit=true)
+        this.pageId = currentPage.includes('.html') ? currentPage.replace('.html', '_html') : 'index_html';
         this.notesStorageKey = `visualEditorNotes_${this.pageId}`;
+        
+        // Debug logging
+        console.log('🔍 VisualEditor iniciado:', {
+            currentPage,
+            pageId: this.pageId,
+            pathname: window.location.pathname,
+            search: window.location.search
+        });
         try {
             this.clientNotes = localStorage.getItem(this.notesStorageKey) || '';
         } catch (e) {

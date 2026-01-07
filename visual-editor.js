@@ -18,9 +18,12 @@ class VisualEditor {
         this.editorPassword = 'thm2024'; // Contraseña para acceder al editor
         this.isAuthenticated = false;
         
-        // Solo mostrar el editor si la URL tiene ?edit=true
+        // Siempre mostrar el editor si la URL tiene ?edit=true
         const urlParams = new URLSearchParams(window.location.search);
         this.editorEnabled = urlParams.get('edit') === 'true';
+        
+        // Siempre crear la UI para mostrar el botón
+        this.createEditorUI();
         
         if (this.editorEnabled) {
             this.setupEditor();
@@ -29,7 +32,6 @@ class VisualEditor {
     }
 
     setupEditor() {
-        this.createEditorUI();
         this.createColorPicker();
         this.createImageUploader();
         this.setupKeyboardShortcuts();

@@ -1517,8 +1517,10 @@ class VisualEditor {
                     <label class="flex-1 px-3 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition flex items-center justify-center gap-2 text-xs font-semibold cursor-pointer border border-white/30 hover:border-white/50">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                         Subir Foto
+                    </label>
+                </div>
+            `;
         } else {
-            element.textContent = originalText;
             buttons = `
                 <button onclick="visualEditor.showColorPickerInline()" class="px-3 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition flex items-center gap-2 text-sm font-semibold" title="Cambiar color">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1742,6 +1744,7 @@ class VisualEditor {
         const newText = document.getElementById('text-editor-input').value;
         if (this.selectedElement) {
             this.selectedElement.textContent = newText;
+            this.trackChange(this.selectedElement, 'text', newText);
             this.showNotification('✅ Texto actualizado', 'success');
         }
         document.querySelector('.fixed.inset-0.bg-black\\/50').remove();
@@ -1825,32 +1828,55 @@ class VisualEditor {
         // Generar botones de colores dinámicamente
         this.generateColorButtons();
         
-        // Event listeners
-        document.getElementById('text-color-picker').addEventListener('input', (e) => {
-            document.getElementById('text-color-hex').value = e.target.value;
-            this.updateColorPreview();
-        });
+        // Configurar event listeners
+        this.setupColorPickerEvents();
+    }
+    
+    setupColorPickerEvents() {
+        const textColorPicker = document.getElementById('text-color-picker');
+        const bgPicker = document.getElementById('bg-color-picker');
+        const textHex = document.getElementById('text-color-hex');
+        const bgHex = document.getElementById('bg-color-hex');
         
-        document.getElementById('text-color-hex').addEventListener('input', (e) => {
-            const hex = e.target.value;
-            if (/^#[0-9A-F]{6}$/i.test(hex)) {
-                document.getElementById('text-color-picker').value = hex;
-                this.updateColorPreview();
-            }
-        });
+        if (textColorPicker) {
+            textColorPicker.addEventListener('input', (e) => {
+                const hex = e.target.value;
+                if (/^#[0-9A-F]{6}$/i.test(hex)) {
+                    textHex.value = hex;
+                    this.updateColorPreview();
+                }
+            });
+        }
         
-        document.getElementById('bg-color-picker').addEventListener('input', (e) => {
-            document.getElementById('bg-color-hex').value = e.target.value;
-            this.updateColorPreview();
-        });
+        if (bgPicker) {
+            bgPicker.addEventListener('input', (e) => {
+                const hex = e.target.value;
+                if (/^#[0-9A-F]{6}$/i.test(hex)) {
+                    bgHex.value = hex;
+                    this.updateColorPreview();
+                }
+            });
+        }
         
-        document.getElementById('bg-color-hex').addEventListener('input', (e) => {
-            const hex = e.target.value;
-            if (/^#[0-9A-F]{6}$/i.test(hex)) {
-                document.getElementById('bg-color-picker').value = hex;
-                this.updateColorPreview();
-            }
-        });
+        if (textHex) {
+            textHex.addEventListener('input', (e) => {
+                const hex = e.target.value;
+                if (/^#[0-9A-F]{6}$/i.test(hex)) {
+                    document.getElementById('text-color-picker').value = hex;
+                    this.updateColorPreview();
+                }
+            });
+        }
+        
+        if (bgHex) {
+            bgHex.addEventListener('input', (e) => {
+                const hex = e.target.value;
+                if (/^#[0-9A-F]{6}$/i.test(hex)) {
+                    document.getElementById('bg-color-picker').value = hex;
+                    this.updateColorPreview();
+                }
+            });
+        }
     }
     
     generateColorButtons() {

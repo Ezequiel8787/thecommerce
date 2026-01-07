@@ -96,10 +96,6 @@ class VisualEditor {
             if (element) {
                 if (change.text !== undefined) {
                     element.textContent = change.text;
-                    // Marcar como editado manualmente para que i18n no lo sobreescriba
-                    if (change.overrideTranslation) {
-                        element.setAttribute('data-manual-edit', 'true');
-                    }
                 }
                 if (change.color) {
                     element.style.color = change.color;
@@ -225,13 +221,6 @@ class VisualEditor {
         
         if (!this.changes[selector]) {
             this.changes[selector] = {};
-        }
-        
-        // Si el elemento tiene data-i18n, guardar para ambos idiomas
-        if (element.hasAttribute('data-i18n') && changeType === 'text') {
-            const i18nKey = element.getAttribute('data-i18n');
-            this.changes[selector].i18nKey = i18nKey;
-            this.changes[selector].overrideTranslation = true;
         }
         
         this.changes[selector][changeType] = value;

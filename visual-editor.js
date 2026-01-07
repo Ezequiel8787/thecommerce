@@ -1124,21 +1124,14 @@ class VisualEditor {
             this.selectedElement.contentEditable = 'false';
         }
         
-        this.removeFloatingMenu();
         document.getElementById('inline-save-btn')?.remove();
         document.getElementById('inline-cancel-btn')?.remove();
         document.getElementById('inline-color-toolbar')?.remove();
         document.getElementById('select-options-editor')?.remove();
-        document.getElementById('i18n-warning')?.remove();
         
         this.selectedElement = element;
         element.style.outline = '3px solid #8b5cf6';
         element.style.outlineOffset = '4px';
-        
-        // Advertir si el elemento tiene traducción automática
-        if (element.hasAttribute('data-i18n')) {
-            this.showI18nWarning(element);
-        }
         
         this.showElementInfo(element);
         
@@ -1150,23 +1143,162 @@ class VisualEditor {
             setTimeout(() => {
                 this.editSelectOptions(element);
             }, 100);
-        } else if (hasText && !isImage) {
-            setTimeout(() => {
-                this.editTextWithColorPalette();
-            }, 100);
         } else if (isImage) {
             setTimeout(() => {
-                this.showFloatingMenu(element);
+                this.showImageUploader();
             }, 100);
-        } else {
+        } else if (hasText) {
             setTimeout(() => {
                 this.editTextWithColorPalette();
             }, 100);
         }
     }
+
+    disableEditing() {
+        const editableElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a, button, img, li, td, th, label, strong, em, b, i, figcaption, cite, blockquote, code, pre');
+        
+        editableElements.forEach(el => {
+            el.style.cursor = '';
+            el.style.outline = '';
+            el.style.backgroundColor = '';
+            el.contentEditable = 'false';
+            el.removeEventListener('mouseenter', this.highlightElement);
+            el.removeEventListener('mouseleave', this.unhighlightElement);
+        });
+        
+        document.getElementById('inline-save-btn')?.remove();
+        document.getElementById('inline-cancel-btn')?.remove();
+        document.getElementById('inline-color-toolbar')?.remove();
+        
+        this.selectedElement = null;
+    }
+
+    highlightElement(e) {
+        if (e.target.closest('#visual-editor-toolbar') || e.target.closest('#toggle-edit-mode')) return;
+        e.target.style.outline = '3px dashed #8b5cf6';
+        e.target.style.outlineOffset = '4px';
+    }
+
+    unhighlightElement(e) {
+        if (e.target !== visualEditor.selectedElement) {
+            e.target.style.outline = '';
+        }
+    }
+
+    selectElement(e, element) {
+        e.preventDefault();
+        e.stopPropagation();
     
+    if (this.selectedElement === element) return;
+    
+    if (this.selectedElement) {
+        this.selectedElement.style.outline = '';
+        this.selectedElement.style.backgroundColor = '';
+        this.selectedElement.contentEditable = 'false';
+    }
+    
+    document.getElementById('inline-save-btn')?.remove();
+    document.getElementById('inline-cancel-btn')?.remove();
+    document.getElementById('inline-color-toolbar')?.remove();
+    document.getElementById('select-options-editor')?.remove();
+    
+    this.selectedElement = element;
+    element.style.outline = '3px solid #8b5cf6';
+    element.style.outlineOffset = '4px';
+    
+    this.showElementInfo(element);
+    
+    const isImage = element.tagName === 'IMG';
+    const isSelect = element.tagName === 'SELECT';
+    const hasText = element.textContent && element.textContent.trim().length > 0;
+    
+    if (isSelect) {
+        setTimeout(() => {
+            this.editSelectOptions(element);
+        }, 100);
+    } else if (isImage) {
+        setTimeout(() => {
+            this.showImageUploader();
+        }, 100);
+    } else if (hasText) {
+        setTimeout(() => {
+            this.editTextWithColorPalette();
+        }, 100);
+    }
+}
+
+editSelectOptions(selectElement) {
+    document.getElementById('inline-color-toolbar')?.remove();
+    
+    const rect = selectElement.getBoundingClientRect();
+    
+    const editor = document.createElement('div');
+    editor.id = 'select-options-editor';
+    editor.className = 'bg-white rounded-xl shadow-2xl p-4 border-2 border-purple-200';
+    editor.style.cssText = `
+        position: fixed;
+        z-index: 99999;
+        left: ${rect.left}px;
+        top: ${rect.bottom + 10}px;
+        min-width: 300px;
+        max-height: 400px;
+        overflow-y: auto;
+    `;
+    
+    const title = document.createElement('div');
+    title.className = 'text-sm font-bold text-slate-700 mb-3 flex items-center gap-2';
+    title.innerHTML = '📋 Editar Opciones del Combo';
+    editor.appendChild(title);
+    
+    const optionsList = document.createElement('div');
+    optionsList.id = 'options-list';
+    optionsList.className = 'space-y-2 mb-3';
+    
+    // Mostrar opciones actuales
+    Array.from(selectElement.options).forEach((option, index) => {
+        const optionRow = this.createOptionRow(option.value, option.text, index, selectElement);
+        optionsList.appendChild(optionRow);
+    });
+    
+    editor.appendChild(optionsList);
+    
+    // Botón para agregar nueva opción
+    const addBtn = document.createElement('button');
+    addBtn.className = 'w-full px-3 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-lg hover:scale-105 transition font-semibold text-sm mb-2';
+    addBtn.innerHTML = '➕ Agregar Opción';
+    addBtn.onclick = () => this.addNewOption(selectElement, optionsList);
+    editor.appendChild(addBtn);
+    
+    // Botones de acción
+    const actionsRow = document.createElement('div');
+    actionsRow.className = 'flex gap-2';
+    
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'flex-1 px-3 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:scale-105 transition font-semibold text-sm';
+    saveBtn.innerHTML = '✅ Guardar';
+    saveBtn.onclick = () => {
+        // Guardar las opciones del SELECT
+        const options = Array.from(selectElement.options).map(opt => ({
+            value: opt.value,
+            text: opt.text
+        }));
+        this.trackChange(selectElement, 'options', options);
+        document.getElementById('select-options-editor')?.remove();
+        this.showNotification('✅ Opciones actualizadas', 'success');
+    };
+    actionsRow.appendChild(saveBtn);
+    
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'px-3 py-2 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 transition font-semibold text-sm';
+    cancelBtn.innerHTML = '✖️ Cerrar';
+    cancelBtn.onclick = () => document.getElementById('select-options-editor')?.remove();
+    actionsRow.appendChild(cancelBtn);
+    
+    editor.appendChild(actionsRow);
+    document.body.appendChild(editor);
+}
+
     editSelectOptions(selectElement) {
-        this.removeFloatingMenu();
         document.getElementById('inline-color-toolbar')?.remove();
         
         const rect = selectElement.getBoundingClientRect();
@@ -1307,8 +1439,6 @@ class VisualEditor {
         const selection = window.getSelection();
         selection.removeAllRanges();
         selection.addRange(range);
-        
-        this.removeFloatingMenu();
         
         const rect = element.getBoundingClientRect();
         

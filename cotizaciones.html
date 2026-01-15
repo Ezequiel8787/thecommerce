@@ -13,10 +13,7 @@
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-2">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-xl">T</span>
-                </div>
-                <h1 class="text-2xl font-bold text-[#0f172a]">THM <span class="text-blue-600">Commerce</span></h1>
+                <img src="images/logo.jpeg" alt="THM Commerce Logo" class="w-16 h-16 rounded-lg object-contain">
             </a>
             <div class="hidden md:flex items-center space-x-1">
                 <a href="index.html" class="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" data-i18n="nav_inicio">Inicio</a>
@@ -341,5 +338,55 @@
     <script src="content-loader.js"></script>
     <script src="script.js"></script>
     <script src="visual-editor.js"></script>
+    <script src="calculadora.js"></script>
+    
+    <!-- Calculator Button -->
+    <button id="calc-button" class="fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-4 rounded-full shadow-2xl hover:scale-110 transition-all z-50 flex items-center gap-2 font-bold">
+        <span class="text-2xl">🧮</span>
+        <span>Calculadora Rápida</span>
+    </button>
+    
+    <!-- Calculator Modal -->
+    <div id="calc-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-gradient-to-br from-slate-900 to-blue-900 rounded-3xl p-8 max-w-2xl w-full shadow-2xl border border-blue-400/30">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-white">🧮 Calculadora de Costos</h2>
+                    <button id="close-calc" class="text-white/70 hover:text-white text-2xl">✖️</button>
+                </div>
+                
+                <!-- Calculator Inputs -->
+                <div id="calc-inputs">
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-blue-200 text-sm font-semibold mb-2">Peso (kg)</label>
+                            <input type="number" id="calc-weight" placeholder="Ej: 500" class="w-full px-4 py-3 bg-white/10 border border-blue-400/30 rounded-lg text-white placeholder-blue-300 focus:outline-none focus:border-blue-400">
+                        </div>
+                        <div>
+                            <label class="block text-blue-200 text-sm font-semibold mb-2">Volumen (m³)</label>
+                            <input type="number" id="calc-volume" placeholder="Ej: 15" class="w-full px-4 py-3 bg-white/10 border border-blue-400/30 rounded-lg text-white placeholder-blue-300 focus:outline-none focus:border-blue-400">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-blue-200 text-sm font-semibold mb-2">Origen</label>
+                        <select id="calc-origin" class="w-full px-4 py-3 bg-white/10 border border-blue-400/30 rounded-lg text-white focus:outline-none focus:border-blue-400">
+                            <option value="china">China</option>
+                            <option value="usa">Estados Unidos</option>
+                        </select>
+                    </div>
+                    
+                    <button id="calculate-btn" class="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold rounded-lg hover:scale-105 transition">
+                        🚀 Calcular Costos
+                    </button>
+                </div>
+                
+                <!-- Calculator Results -->
+                <div id="calc-results" class="hidden">
+                    <!-- Results will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

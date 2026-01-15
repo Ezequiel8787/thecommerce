@@ -18,6 +18,117 @@ document.addEventListener('DOMContentLoaded', function() {
         nav.insertAdjacentHTML('beforeend', menuHTML);
     }
     
+    // Testimonials Carousel
+    const carousel = document.getElementById('testimonials-carousel');
+    const prevBtn = document.getElementById('prev-testimonial');
+    const nextBtn = document.getElementById('next-testimonial');
+    const indicators = document.getElementById('testimonial-indicators');
+    
+    if (carousel && prevBtn && nextBtn && indicators) {
+        let currentSlide = 0;
+        const totalSlides = 4;
+        let autoPlayInterval;
+        
+        function updateCarousel() {
+            // Update carousel position
+            if (window.innerWidth >= 768) {
+                // Desktop: Show 3 slides, move by 1 slide
+                carousel.style.transform = `translateX(-${currentSlide * 33.333}%)`;
+            } else {
+                // Mobile: Show 1 slide, move by 1 slide
+                carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+            
+            // Update indicators
+            indicators.querySelectorAll('button').forEach((btn, index) => {
+                if (index === currentSlide) {
+                    btn.classList.remove('bg-slate-600');
+                    btn.classList.add('bg-blue-600');
+                } else {
+                    btn.classList.remove('bg-blue-600');
+                    btn.classList.add('bg-slate-600');
+                }
+            });
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+        
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, 5000);
+        }
+        
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+        
+        // Event listeners
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoPlay();
+            startAutoPlay();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoPlay();
+            startAutoPlay();
+        });
+        
+        // Indicator clicks
+        indicators.querySelectorAll('button').forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                currentSlide = index;
+                updateCarousel();
+                stopAutoPlay();
+                startAutoPlay();
+            });
+        });
+        
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+                stopAutoPlay();
+                startAutoPlay();
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevSlide();
+                stopAutoPlay();
+                startAutoPlay();
+            }
+        }
+        
+        // Start autoplay
+        startAutoPlay();
+        
+        // Pause on hover
+        carousel.addEventListener('mouseenter', stopAutoPlay);
+        carousel.addEventListener('mouseleave', startAutoPlay);
+        
+        // Handle window resize
+        window.addEventListener('resize', updateCarousel);
+    }
+    
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');

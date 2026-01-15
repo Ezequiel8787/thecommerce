@@ -13,10 +13,7 @@
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-2">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-xl">T</span>
-                </div>
-                <h1 class="text-2xl font-bold text-[#0f172a]">THM <span class="text-blue-600">Commerce</span></h1>
+                <img src="images/logo.jpeg" alt="THM Commerce Logo" class="w-16 h-16 rounded-lg object-contain">
             </a>
             <div class="hidden md:flex items-center space-x-1">
                 <a href="index.html" class="px-4 py-2 text-blue-600 bg-blue-50 rounded-lg transition" data-i18n="nav_inicio">Inicio</a>
@@ -391,45 +388,90 @@
                 <h3 class="text-4xl font-bold mb-4" data-i18n="testimonials_title">Lo Que Dicen Nuestros Clientes</h3>
                 <p class="text-slate-400" data-i18n="testimonials_subtitle">Más de 500 empresas confían en nosotros</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8" data-testimonios-grid>
-                <div class="bg-slate-800 p-8 rounded-2xl hover:bg-slate-750 transition-all hover:scale-105">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400 text-xl">★★★★★</div>
-                    </div>
-                    <p class="text-slate-300 mb-6 italic">“Excelente servicio. Nos ayudaron a importar maquinaria desde China con total transparencia. Ahorramos 35% vs otros proveedores.”</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center font-bold mr-3">JM</div>
-                        <div>
-                            <p class="font-bold">Juan Martínez</p>
-                            <p class="text-sm text-slate-400">Director de Compras, Industrias del Norte</p>
+            <div class="relative">
+                <div class="overflow-hidden rounded-2xl">
+                    <div class="flex transition-transform duration-500 ease-in-out" id="testimonials-carousel">
+                        <div class="min-w-full md:min-w-0 md:w-1/3 px-2">
+                            <div class="bg-slate-800 p-8 rounded-2xl hover:bg-slate-750 transition-all hover:scale-105 h-full">
+                                <div class="flex items-center mb-4">
+                                    <div class="flex text-yellow-400 text-xl">★★★★★</div>
+                                </div>
+                                <p class="text-slate-300 mb-6 italic">"Siempre tuvieron disposición para responder todas mis dudas, todo el proceso con ellos fue súper fácil!"</p>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center font-bold mr-3">JR</div>
+                                    <div>
+                                        <p class="font-bold">Janeth Rodriguez</p>
+                                        <p class="text-sm text-slate-400">Cliente Satisfecha</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="min-w-full md:min-w-0 md:w-1/3 px-2">
+                            <div class="bg-slate-800 p-8 rounded-2xl hover:bg-slate-750 transition-all hover:scale-105 h-full">
+                                <div class="flex items-center mb-4">
+                                    <div class="flex text-yellow-400 text-xl">★★★★★</div>
+                                </div>
+                                <p class="text-slate-300 mb-6 italic">"Excelente comunicación, mi mercancía llego unos días antes del tiempo estimado"</p>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-cyan-600 rounded-full flex items-center justify-center font-bold mr-3">AO</div>
+                                    <div>
+                                        <p class="font-bold">Arturo Omit Herrera</p>
+                                        <p class="text-sm text-slate-400">Importador Frecuente</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="min-w-full md:min-w-0 md:w-1/3 px-2">
+                            <div class="bg-slate-800 p-8 rounded-2xl hover:bg-slate-750 transition-all hover:scale-105 h-full">
+                                <div class="flex items-center mb-4">
+                                    <div class="flex text-yellow-400 text-xl">★★★★★</div>
+                                </div>
+                                <p class="text-slate-300 mb-6 italic">"Todo muy bien, seguimiento puntual de las chicas que nos atendieron"</p>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center font-bold mr-3">LH</div>
+                                    <div>
+                                        <p class="font-bold">Luis Eduardo Herrera Siller</p>
+                                        <p class="text-sm text-slate-400">Cliente Regular</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="min-w-full md:min-w-0 md:w-1/3 px-2">
+                            <div class="bg-slate-800 p-8 rounded-2xl hover:bg-slate-750 transition-all hover:scale-105 h-full">
+                                <div class="flex items-center mb-4">
+                                    <div class="flex text-yellow-400 text-xl">★★★★★</div>
+                                </div>
+                                <p class="text-slate-300 mb-6 italic">"Me ayudaron a conseguir proveedor para mis insumos médicos a muy buen precio, anteriormente me habían cobrado otras empresas un dineral por ser del area de la salud, además muy amables me lo llevaron hasta mi negocio, súper agradecida con sus atenciones ✨"</p>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center font-bold mr-3">IS</div>
+                                    <div>
+                                        <p class="font-bold">Ivonne S.</p>
+                                        <p class="text-sm text-slate-400">Dueña, Insumos Médicos</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-slate-800 p-8 rounded-2xl hover:bg-slate-750 transition-all hover:scale-105">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400 text-xl">★★★★★</div>
-                    </div>
-                    <p class="text-slate-300 mb-6 italic">“La verificación en fábrica fue clave. Detectaron problemas de calidad antes del envío. Muy profesionales.”</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-cyan-600 rounded-full flex items-center justify-center font-bold mr-3">LG</div>
-                        <div>
-                            <p class="font-bold">Laura Gómez</p>
-                            <p class="text-sm text-slate-400">Gerente General, Textiles México</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-slate-800 p-8 rounded-2xl hover:bg-slate-750 transition-all hover:scale-105">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400 text-xl">★★★★★</div>
-                    </div>
-                    <p class="text-slate-300 mb-6 italic">“Llevo 3 años trabajando con THM. Siempre cumplen tiempos y la facturación nacional es perfecta para mi contabilidad.”</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center font-bold mr-3">RS</div>
-                        <div>
-                            <p class="font-bold">Roberto Sánchez</p>
-                            <p class="text-sm text-slate-400">Dueño, Electrónicos RS</p>
-                        </div>
-                    </div>
+                
+                <!-- Carousel Controls -->
+                <button id="prev-testimonial" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition hidden md:block">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button id="next-testimonial" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition hidden md:block">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Carousel Indicators -->
+                <div class="flex justify-center mt-6 space-x-2" id="testimonial-indicators">
+                    <button class="w-2 h-2 bg-blue-600 rounded-full transition-all" data-slide="0"></button>
+                    <button class="w-2 h-2 bg-slate-600 rounded-full transition-all" data-slide="1"></button>
+                    <button class="w-2 h-2 bg-slate-600 rounded-full transition-all" data-slide="2"></button>
+                    <button class="w-2 h-2 bg-slate-600 rounded-full transition-all" data-slide="3"></button>
                 </div>
             </div>
         </div>

@@ -3,14 +3,15 @@ class CostCalculator {
     constructor() {
         this.rates = {
             aereo: {
-                china: 6.5,  // USD por kg
-                usa: 4.2
+                china: 21.5,  // USD por kg + IVA
+                usa: 18.5
             },
             maritimo: {
-                china: 850,  // USD por m³
-                usa: 650
+                china: 980,  // USD por m³
+                usa: 750
             }
         };
+        this.ivaRate = 0.16; // 16% IVA México
         
         this.init();
     }
@@ -75,7 +76,9 @@ class CostCalculator {
         const aereoRate = this.rates.aereo[origin];
         const maritimoRate = this.rates.maritimo[origin];
         
-        const costAereo = weight * aereoRate;
+        const costAereoBase = weight * aereoRate;
+        const costAereoIVA = costAereoBase * this.ivaRate;
+        const costAereo = costAereoBase + costAereoIVA;
         const costMaritimo = volume * maritimoRate;
         
         // Calcular tiempos
@@ -86,6 +89,8 @@ class CostCalculator {
         this.showResults({
             aereo: {
                 cost: costAereo,
+                costBase: costAereoBase,
+                costIVA: costAereoIVA,
                 time: timeAereo,
                 perUnit: aereoRate
             },
@@ -133,8 +138,9 @@ class CostCalculator {
                     </div>
                     <h4 class="text-lg font-bold text-white mb-2">Envío Aéreo</h4>
                     <div class="text-3xl font-black text-white mb-2">${formatCurrency(data.aereo.cost)}</div>
-                    <p class="text-blue-100 text-sm mb-3">Tiempo: ${data.aereo.time}</p>
-                    <p class="text-xs text-blue-200">Tarifa: $${data.aereo.perUnit} USD/kg</p>
+                    <p class="text-blue-100 text-sm mb-1">Tiempo: ${data.aereo.time}</p>
+                    <p class="text-xs text-blue-200 mb-1">Tarifa: $${data.aereo.perUnit} USD/kg + IVA</p>
+                    <p class="text-xs text-blue-300">Base: ${formatCurrency(data.aereo.costBase)} | IVA: ${formatCurrency(data.aereo.costIVA)}</p>
                 </div>
                 
                 <div class="bg-gradient-to-br from-cyan-600 to-cyan-700 p-6 rounded-xl border-2 border-cyan-400">
@@ -151,7 +157,7 @@ class CostCalculator {
             
             <div class="bg-blue-900/50 p-4 rounded-lg mb-6">
                 <p class="text-sm text-blue-200 mb-2">💡 <strong>Ahorro potencial:</strong> ${formatCurrency(Math.abs(data.aereo.cost - data.maritimo.cost))}</p>
-                <p class="text-xs text-blue-300">* Precios estimados. No incluyen aduanas ni seguros. Cotización final puede variar.</p>
+                <p class="text-xs text-blue-300">* Precios estimados. Envío marítimo no incluye aduanas ni seguros. Envío aéreo incluye IVA del 16%. Cotización final puede variar.</p>
             </div>
             
             <div class="flex gap-3">

@@ -1,0 +1,58 @@
+{
+  "_id": "servicios-main",
+  "_type": "servicios",
+  "title": "Nuestros Servicios",
+  "subtitle": "Soluciones integrales para tu cadena de suministro",
+  "services": [
+    {
+      "name": "Carga Pesada",
+      "description": "Descripción de Carga Pesada",
+      "icon": "📦",
+      "features": [
+        "Característica 1",
+        "Característica 2",
+        "Característica 3"
+      ]
+    },
+    {
+      "name": "Importación Consolidada",
+      "description": "Descripción de Importación Consolidada",
+      "icon": "📦",
+      "features": [
+        "Característica 1",
+        "Característica 2",
+        "Característica 3"
+      ]
+    },
+    {
+      "name": "Envíos Aéreos",
+      "description": "Descripción de Envíos Aéreos",
+      "icon": "📦",
+      "features": [
+        "Característica 1",
+        "Característica 2",
+        "Característica 3"
+      ]
+    },
+    {
+      "name": "Verificación en China",
+      "description": "Descripción de Verificación en China",
+      "icon": "📦",
+      "features": [
+        "Característica 1",
+        "Característica 2",
+        "Característica 3"
+      ]
+    },
+    {
+      "name": "Envíos Marítimos",
+      "description": "Descripción de Envíos Marítimos",
+      "icon": "📦",
+      "features": [
+        "Característica 1",
+        "Característica 2",
+        "Característica 3"
+      ]
+    }
+  ]
+}

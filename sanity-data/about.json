@@ -1,0 +1,19 @@
+{
+  "_id": "about-main",
+  "_type": "about",
+  "title": "Acerca de THM Commerce",
+  "description": "Tu socio estratégico en importaciones internacionales",
+  "mission": "Facilitar el comercio internacional para empresas",
+  "vision": "Ser el líder en soluciones logísticas",
+  "values": [
+    {
+      "title": "Confianza",
+      "description": "Construyendo relaciones duraderas"
+    },
+    {
+      "title": "Eficiencia",
+      "description": "Procesos optimizados para mejores resultados"
+    }
+  ],
+  "team": []
+}

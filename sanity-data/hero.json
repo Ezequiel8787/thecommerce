@@ -1,0 +1,40 @@
+{
+  "_id": "hero-main",
+  "_type": "hero",
+  "title": "Conectamos tu Negocio con el",
+  "subtitle": "Importaciones seguras desde China y USA. Verificación de calidad, gestión aduanal y entrega directa en México.",
+  "badge": "🌍 Operando en 3 Continentes",
+  "backgroundImage": {
+    "_type": "image",
+    "asset": {
+      "_ref": "image-temp-ref",
+      "_type": "reference"
+    }
+  },
+  "stats": [
+    {
+      "value": "15+",
+      "label": "Años de Experiencia"
+    },
+    {
+      "value": "500+",
+      "label": "Clientes Satisfechos"
+    },
+    {
+      "value": "3",
+      "label": "Oficinas Globales"
+    }
+  ],
+  "ctaButtons": [
+    {
+      "text": "Calcular Costo Ahora",
+      "href": "#",
+      "style": "primary"
+    },
+    {
+      "text": "Solicitar Cotización",
+      "href": "cotizaciones.html",
+      "style": "secondary"
+    }
+  ]
+}

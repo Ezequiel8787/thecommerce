@@ -37,24 +37,9 @@ nav img {
     margin: -10px 20px -10px 0;
 }
 
-/* Adjust navbar to prevent height growth */
-nav {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0 6rem;
-}
-
-nav > div {
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-/* Position navigation links properly */
-nav > div:last-child {
-    margin-left: auto;
+/* Navbar container row */
+nav > div:first-child {
+    min-height: 80px;
 }
 
 .group:hover img {

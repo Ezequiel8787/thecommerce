@@ -10,7 +10,7 @@ export default defineConfig({
     structureTool({
       structure: (S) =>
         S.list()
-          .title('THM Commerce Content')
+          .title('THM Company Content')
           .items([
             S.listItem()
               .title('🏠 Página Principal')

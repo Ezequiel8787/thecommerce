@@ -22,7 +22,7 @@ const translations = {
         hero_stat_offices: "Oficinas Globales",
         
         // Why THM Section
-        why_title_badge: "¿Por Qué THM Commerce?",
+        why_title_badge: "¿Por Qué THM Company?",
         why_title: "Tu Socio Estratégico en Importaciones",
         why_subtitle: "Simplificamos el comercio internacional para que puedas enfocarte en hacer crecer tu negocio",
         why_card1_title: "Servicio Integral",
@@ -109,7 +109,7 @@ const translations = {
         about_history_title: "Una Trayectoria de Éxito",
         about_values_badge: "Nuestros Valores",
         about_values_title: "Lo Que Nos Define",
-        about_values_subtitle: "Principios que guían cada decisión y acción en THM Commerce",
+        about_values_subtitle: "Principios que guían cada decisión y acción en THM Company",
         about_mission_vision_badge: "Nuestra Misión y Visión",
         about_mission_vision_title: "Hacia Dónde Vamos",
         about_mission_title: "Misión",
@@ -117,7 +117,7 @@ const translations = {
         about_team_title: "Nuestro Equipo",
         about_team_subtitle: "Profesionales dedicados con experiencia en comercio internacional, logística y atención al cliente",
         about_cta_title: "¿Listo para Trabajar con Nosotros?",
-        about_cta_subtitle: "Únete a las más de 500 empresas que confían en THM Commerce para sus importaciones",
+        about_cta_subtitle: "Únete a las más de 500 empresas que confían en THM Company para sus importaciones",
         
         // Servicios Page
         services_page_badge: "Nuestros Servicios",
@@ -213,7 +213,7 @@ const translations = {
         hero_stat_offices: "Global Offices",
         
         // Why THM Section
-        why_title_badge: "Why THM Commerce?",
+        why_title_badge: "Why THM Company?",
         why_title: "Your Strategic Partner in Imports",
         why_subtitle: "We simplify international trade so you can focus on growing your business",
         why_card1_title: "Comprehensive Service",
@@ -300,7 +300,7 @@ const translations = {
         about_history_title: "A Success Story",
         about_values_badge: "Our Values",
         about_values_title: "What Defines Us",
-        about_values_subtitle: "Principles that guide every decision and action at THM Commerce",
+        about_values_subtitle: "Principles that guide every decision and action at THM Company",
         about_mission_vision_badge: "Our Mission and Vision",
         about_mission_vision_title: "Where We're Going",
         about_mission_title: "Mission",
@@ -308,7 +308,7 @@ const translations = {
         about_team_title: "Our Team",
         about_team_subtitle: "Dedicated professionals with experience in international trade, logistics and customer service",
         about_cta_title: "Ready to Work with Us?",
-        about_cta_subtitle: "Join the over 500 companies that trust THM Commerce for their imports",
+        about_cta_subtitle: "Join the over 500 companies that trust THM Company for their imports",
         
         // Servicios Page
         services_page_badge: "Our Services",

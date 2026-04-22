@@ -84,7 +84,7 @@ async function migrateContent() {
     // Crear documento About básico
     const aboutDoc = {
       _type: 'about',
-      title: 'Acerca de THM Commerce',
+      title: 'Acerca de THM Company',
       description: 'Tu socio estratégico en importaciones internacionales',
       mission: 'Facilitar el comercio internacional para empresas',
       vision: 'Ser el líder en soluciones logísticas',

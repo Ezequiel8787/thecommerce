@@ -10,7 +10,7 @@
 5. Restringe la API Key a tu dominio Vercel
 
 ### 2. Configurar el Place ID
-El Place ID para THM Commerce ya está configurado:
+El Place ID para THM Company ya está configurado:
 ```
 ChdDSUhNMG9nS0VJQ0FnSUNMcXJDQjZnRRAB
 ```

@@ -4,7 +4,7 @@ class ChatbotAI {
         this.messages = [];
         this.responses = {
             greeting: [
-                "¡Hola! 👋 Soy el asistente virtual de THM Commerce. ¿En qué puedo ayudarte hoy?",
+                "¡Hola! 👋 Soy el asistente virtual de THM Company. ¿En qué puedo ayudarte hoy?",
                 "¡Bienvenido! Soy tu asistente de logística. ¿Tienes alguna pregunta sobre importaciones?"
             ],
             pricing: [

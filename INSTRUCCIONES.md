@@ -1,4 +1,4 @@
-# 📖 Manual de Usuario - Panel de Administración THM Commerce
+# 📖 Manual de Usuario - Panel de Administración THM Company
 
 ## 🎯 ¿Qué es esto?
 

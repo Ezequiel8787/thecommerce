@@ -127,7 +127,7 @@ class GoogleReviewsManager {
 
 // Configuración y uso
 const GOOGLE_PLACES_API_KEY = 'TU_API_KEY_AQUI';
-const PLACE_ID = 'ChdDSUhNMG9nS0VJQ0FnSUNMcXJDQjZnRRAB'; // Place ID de THM Commerce
+const PLACE_ID = 'ChdDSUhNMG9nS0VJQ0FnSUNMcXJDQjZnRRAB'; // Place ID de THM Company
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {

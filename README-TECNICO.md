@@ -1,8 +1,8 @@
-# 🛠️ Documentación Técnica - Sistema CMS THM Commerce
+# 🛠️ Documentación Técnica - Sistema CMS THM Company
 
 ## 📌 Descripción General
 
-Sistema de gestión de contenido (CMS) simple basado en JSON para el sitio web de THM Commerce. Permite a usuarios sin conocimientos técnicos editar contenido e imágenes a través de un panel de administración visual.
+Sistema de gestión de contenido (CMS) simple basado en JSON para el sitio web de THM Company. Permite a usuarios sin conocimientos técnicos editar contenido e imágenes a través de un panel de administración visual.
 
 ---
 
@@ -345,6 +345,6 @@ Para dudas técnicas o problemas:
 
 ## 📄 Licencia
 
-Este sistema fue desarrollado específicamente para THM Commerce.
+Este sistema fue desarrollado específicamente para THM Company.
 
 **Última actualización**: Diciembre 2025

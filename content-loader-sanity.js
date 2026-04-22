@@ -89,7 +89,7 @@ export async function loadAboutContent() {
   const about = await fetchWithFallback('about')
   if (about) {
     return {
-      title: about.title || 'Acerca de THM Commerce',
+      title: about.title || 'Acerca de THM Company',
       description: about.description || 'Descripción',
       mission: about.mission || 'Misión',
       vision: about.vision || 'Visión',
@@ -114,7 +114,7 @@ export async function loadAllContent() {
       servicios: servicios?.servicios || [],
       about,
       sitio: {
-        nombre: 'THM Commerce',
+        nombre: 'THM Company',
         email: 'thmlogisticsimports@gmail.com',
         telefono1: '(614) 219-0607',
         telefono2: '(614) 152-6240',
